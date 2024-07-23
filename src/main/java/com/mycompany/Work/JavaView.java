@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -176,6 +178,7 @@ public class JavaView extends javax.swing.JFrame {
         String apellidos = Apellidos.getText();
         String ciudad = Ciudad.getText();
         String direccion = Direccion.getText();
+        String query;
         
         System.out.println(id);
         System.out.println(nombre);
@@ -194,7 +197,39 @@ public class JavaView extends javax.swing.JFrame {
             Connection connection = DriverManager.getConnection(url, user, password);
             Statement statement = connection.createStatement();
             
-            System.out.println("Conecction Perfect");
+            if ("".equals(Nombre.getText())) {
+                JOptionPane.showMessageDialog(new JFrame(), "First Name is required", "Dialog",
+                        JOptionPane.ERROR_MESSAGE);
+                
+            } else if("".equals(Apellidos.getText())) {
+                
+                JOptionPane.showMessageDialog(new JFrame(), "Last Name is required", "Dialog",
+                        JOptionPane.ERROR_MESSAGE);
+                
+            } else if("".equals(Ciudad.getText())) {
+                
+                JOptionPane.showMessageDialog(new JFrame(), "Ciudad is required", "Dialog",
+                        JOptionPane.ERROR_MESSAGE);
+               
+            } else if("".equals(Direccion.getText())) {
+                
+                JOptionPane.showMessageDialog(new JFrame(), "Adress is required", "Dialog",
+                        JOptionPane.ERROR_MESSAGE);    
+                
+            } else {
+                id = Id.getColumns();
+                nombre = Nombre.getText();
+                apellidos = Apellidos.getText();
+                ciudad = Ciudad.getText();
+                direccion = Direccion.getText();
+                query = "INSERT INTO camper (Id, Nombre, Apellidos, Ciudad, Direccion) "
+                        + "VALUES ("+id+", "+nombre+" + "+apellidos+" + "+ciudad+" + "+direccion+")";
+          
+                
+                System.out.println(query);
+            }
+            
+            
             
             
         }catch(Exception e){
