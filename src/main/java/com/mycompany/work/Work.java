@@ -18,5 +18,3 @@ public class Work {
         objetoConexion.estabableceConexion();
    }
 }
-
-
