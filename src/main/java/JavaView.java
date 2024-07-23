@@ -37,10 +37,9 @@ public class JavaView extends javax.swing.JFrame {
         Nombre = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         Direccion = new javax.swing.JTextField();
-        BotonCrear = new javax.swing.JButton();
+        CrearBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 450));
 
         jPanel2.setPreferredSize(new java.awt.Dimension(800, 450));
 
@@ -68,7 +67,12 @@ public class JavaView extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Hiragino Sans", 2, 18)); // NOI18N
         jLabel6.setText("Dirección:");
 
-        BotonCrear.setText("¡CREAR!");
+        CrearBoton.setText("¡CREAR!");
+        CrearBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CrearUsuario(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -88,10 +92,11 @@ public class JavaView extends javax.swing.JFrame {
                                     .addComponent(jLabel5)
                                     .addGap(18, 18, 18)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(37, 37, 37))
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel2))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel2))
+                                .addGap(17, 17, 17)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -100,7 +105,7 @@ public class JavaView extends javax.swing.JFrame {
                             .addComponent(Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(52, 52, 52)
-                        .addComponent(BotonCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(CrearBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(273, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -135,7 +140,7 @@ public class JavaView extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(BotonCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CrearBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
 
@@ -156,6 +161,10 @@ public class JavaView extends javax.swing.JFrame {
     private void IdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_IdActionPerformed
+
+    private void CrearUsuario(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CrearUsuario
+        System.out.println("Helloooo");
+    }//GEN-LAST:event_CrearUsuario
 
     /**
      * @param args the command line arguments
@@ -194,8 +203,8 @@ public class JavaView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Apellidos;
-    private javax.swing.JButton BotonCrear;
     private javax.swing.JTextField Ciudad;
+    private javax.swing.JButton CrearBoton;
     private javax.swing.JTextField Direccion;
     private javax.swing.JTextField Id;
     private javax.swing.JTextField Nombre;
