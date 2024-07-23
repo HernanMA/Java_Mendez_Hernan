@@ -3,6 +3,9 @@ package com.mycompany.work;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.*;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -187,6 +190,9 @@ public class JavaView extends javax.swing.JFrame {
             String url = "jdbc:MySQL://localhost:3306/Camper";
             String user = "root";
             String password = "1101685607";
+            
+            Connection connection = DriverManager.getConnection(url, user, password);
+            Statement statement = connection.createStatement();
             
             System.out.println("Conecction Perfect");
             
