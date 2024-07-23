@@ -69,11 +69,11 @@
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="Id" min="-2" max="-2" attributes="0"/>
                               <Component id="Apellidos" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                               <Component id="Nombre" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                               <Component id="Ciudad" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                               <Component id="Direccion" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                              <Component id="Id" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">

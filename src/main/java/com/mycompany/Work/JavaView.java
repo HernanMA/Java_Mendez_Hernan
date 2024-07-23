@@ -1,3 +1,8 @@
+package com.mycompany.work;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -98,11 +103,11 @@ public class JavaView extends javax.swing.JFrame {
                                     .addComponent(jLabel2))
                                 .addGap(17, 17, 17)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(52, 52, 52)
                         .addComponent(CrearBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -163,7 +168,33 @@ public class JavaView extends javax.swing.JFrame {
     }//GEN-LAST:event_IdActionPerformed
 
     private void CrearUsuario(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CrearUsuario
-        System.out.println("Helloooo");
+        int id = Id.getColumns();
+        String nombre = Nombre.getText();
+        String apellidos = Apellidos.getText();
+        String ciudad = Ciudad.getText();
+        String direccion = Direccion.getText();
+        
+        System.out.println(id);
+        System.out.println(nombre);
+        System.out.println(apellidos);
+        System.out.println(ciudad);
+        System.out.println(direccion);
+        
+        // Connect to database
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            
+            String url = "jdbc:MySQL://localhost:3306/Camper";
+            String user = "root";
+            String password = "1101685607";
+            
+            System.out.println("Conecction Perfect");
+            
+            
+        }catch(Exception e){
+            System.out.println("Error " + e.getMessage());
+            
+        }
     }//GEN-LAST:event_CrearUsuario
 
     /**
