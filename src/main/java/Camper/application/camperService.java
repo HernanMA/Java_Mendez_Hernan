@@ -33,7 +33,7 @@ public class camperService {
         return CamperRepository.findById(id);
     }
     
-    public void deletePais(int id) {
+    public void deleteCamper(int id) {
         CamperRepository.delete(id);
     }
     
