@@ -25,12 +25,12 @@ import javax.swing.JOptionPane;
  * @author hernan
  */
 
-public class PaisMySQLRepository implements PaisRepository {
+public class CamperMySQLRepository implements CamperRepository {
     private final String url;
     private final String user;
     private final String password;
 
-    public PaisMySQLRepository(String url, String user, String password) {
+    public CamperMySQLRepository(String url, String user, String password) {
         this.url = url;
         this.user = user;
         this.password = password;
@@ -67,7 +67,7 @@ public class PaisMySQLRepository implements PaisRepository {
     @Override 
     public Optional<Camper> findById(int id) {
         try (Connection connection = DriverManager.getConnection(url, user, password)) {
-            String Query = "SELECT * FROM camper WHERE id = ?";
+            String query = "SELECT * FROM camper WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setInt(1, id);
                 
