@@ -84,7 +84,6 @@ public class Menu {
                     System.exit(0);
                     break;
                     
-                    
                 default:
                     System.out.println("Opción no encontrada");
             }
