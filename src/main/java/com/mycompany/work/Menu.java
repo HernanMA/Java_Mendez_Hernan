@@ -29,48 +29,35 @@ public class Menu {
             System.out.println("8. Asignar Notas");
             System.out.println("9. Salir");
             opcion = scanner.nextInt();
-            String opciones = null;
+            scanner.nextLine();
 
             switch(opcion) {
+                
                 case 1:
-                    opciones = "Añadir Camper";
+                    System.out.println("Ingrese los siguientes datos para añadir al camper a la base de datos");
+                    String createCamper = scanner.nextLine();
                     break;
+                    
+                    Camper newCamper = new Camper(createData);
+                    camperService.createCamper(newCamper);
+                    break;
+                    
                 case 2: 
                     opciones = "Ver Camper";
                     break;
+                    
                 case 3:
                     opciones = "Actualizar Camper";
                     break;
+                    
                 case 4:
                     opciones = "Eliminar Camper";
                     break;
-                case 5:
-                    opciones = "Ver Trainer";
-                    break;
-                case 6:
-                    opciones = "Actualizar Trainer";
-                    break;
-                case 7:
-                    opciones = "Ver Salones";
-                    break;
-                case 8:
-                    opciones = "Asignar Notas";
-                    break;
-                case 9:
-                    System.out.println("Saliendo...");
-                    break;
+                    
                 default:
                     System.out.println("Opción no encontrada");
-                    break;
             }
-
-            if (opciones != null && opcion != 9) {
-                System.out.println("Opción seleccionada: " + opciones);
-            }
-            
-        } while (opcion != 9);
-
-        scanner.close();
+        }
     }
 }
 
