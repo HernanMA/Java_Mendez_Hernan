@@ -249,6 +249,11 @@ public class JavaView extends javax.swing.JFrame {
 		String nombre = Nombre.getText();
 		String apellidos = Identificacion.getText();
 		String direccion = Direccion.getText();
+                String acudiente = Acudiente.getText();
+                String telefono_celular = Telefono_celular.getText();
+                String telefono_fijo = Telefono_fijo.getText();
+                String estado = Estado.getText();
+                String riesgo = Riesgo.getText();
 		String query;	
                 
                 System.out.println(id);
@@ -256,6 +261,10 @@ public class JavaView extends javax.swing.JFrame {
                 System.out.println(apellidos);
                 System.out.println(direccion);
                 System.out.println(identificacion);
+                System.out.println(telefono_celular);
+                System.out.println(telefono_fijo);
+                System.out.println(estado);
+                System.out.println(riesgo);
 
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -283,6 +292,11 @@ public class JavaView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(new JFrame(), "Adress is required", "Dialog",
                     JOptionPane.ERROR_MESSAGE);
             
+        } else if("".equals(Estado.getText())) {
+            JOptionPane.showMessageDialog(new JFrame(), "Status is required", "Dialog",
+                    JOptionPane.ERROR_MESSAGE);    
+            
+            
         
 
         } else {
@@ -290,17 +304,27 @@ public class JavaView extends javax.swing.JFrame {
     nombre = Nombre.getText();
     apellidos = Identificacion.getText();
     direccion = Direccion.getText();
+    acudiente = Acudiente.getText();
+    telefono_celular = Telefono_celular.getText();
+    telefono_fijo = Telefono_fijo.getText();
+    estado = Estado.getText();
+    riesgo = Riesgo.getText();
     
     // Asegúrate de usar comillas simples para los valores de tipo String
-    query = "INSERT INTO camper (Id, Identificacion, Nombre, Apellidos, Direccion) "
-            + "VALUES ('"+id+"', '"+identificacion+"', '"+nombre+"', '"+apellidos+"', '"+direccion+"')";
+    query = "INSERT INTO camper (Id, Identificacion, Nombre, Apellidos, Direccion, Acudiente, Telefono_celular, Telefono_fijo, Estado, Riesgo) "
+            + "VALUES ('"+id+"', '"+identificacion+"', '"+nombre+"', '"+apellidos+"', '"+direccion+"', '"+acudiente+"', '"+telefono_celular+"', '"+telefono_fijo+"', '"+estado+"', '"+riesgo+"')";
     
     statement.executeUpdate(query);
     Id.setText("");
     Identificacion.getText();
     Nombre.setText("");
-    Identificacion.setText("");
+    Apellidos.setText("");
     Direccion.setText("");
+    Acudiente.setText("");
+    Telefono_celular.setText("");
+    Telefono_fijo.setText("");
+    Estado.setText("");
+    Riesgo.setText("");
     
     JOptionPane.showMessageDialog(null, "Successfully registered");
     connection.close();
