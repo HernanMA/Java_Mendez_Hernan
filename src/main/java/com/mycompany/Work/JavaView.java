@@ -6,8 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.*;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -47,7 +49,7 @@ public class JavaView extends javax.swing.JFrame {
         Nombre = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         Direccion = new javax.swing.JTextField();
-        CrearBoton = new javax.swing.JButton();
+        loadData = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,10 +79,17 @@ public class JavaView extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Hiragino Sans", 2, 18)); // NOI18N
         jLabel6.setText("Dirección:");
 
-        CrearBoton.setText("¡CREAR!");
-        CrearBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+        loadData.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 2, 18)); // NOI18N
+        loadData.setText("¡Crear!");
+        loadData.setActionCommand("loadData");
+        loadData.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CrearUsuario(evt);
+                loadDataMouseClicked(evt);
+            }
+        });
+        loadData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadDataActionPerformed(evt);
             }
         });
 
@@ -89,33 +98,35 @@ public class JavaView extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(141, 141, 141)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(141, 141, 141)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(27, 27, 27))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addGap(18, 18, 18)))
+                            .addComponent(jLabel1)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel2))
-                                .addGap(17, 17, 17)))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addComponent(jLabel3)
+                                            .addGap(27, 27, 27))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                            .addComponent(jLabel5)
+                                            .addGap(18, 18, 18)))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel2))
+                                        .addGap(17, 17, 17)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(CrearBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(219, 219, 219)
+                        .addComponent(loadData, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(273, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -149,9 +160,9 @@ public class JavaView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(CrearBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(loadData, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -169,75 +180,88 @@ public class JavaView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void IdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_IdActionPerformed
 
-    private void CrearUsuario(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CrearUsuario
-        int id = Id.getColumns();
-        String nombre = Nombre.getText();
-        String apellidos = Apellidos.getText();
-        String ciudad = Ciudad.getText();
-        String direccion = Direccion.getText();
-        String query;
+    private void loadDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadDataActionPerformed
         
-        System.out.println(id);
-        System.out.println(nombre);
-        System.out.println(apellidos);
-        System.out.println(ciudad);
-        System.out.println(direccion);
-        
-        // Connect to database
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            
-            String url = "jdbc:MySQL://localhost:3306/Camper";
-            String user = "root";
-            String password = "1101685607";
-            
-            Connection connection = DriverManager.getConnection(url, user, password);
-            Statement statement = connection.createStatement();
-            
-            if ("".equals(Nombre.getText())) {
-                JOptionPane.showMessageDialog(new JFrame(), "First Name is required", "Dialog",
-                        JOptionPane.ERROR_MESSAGE);
-                
-            } else if("".equals(Apellidos.getText())) {
-                
-                JOptionPane.showMessageDialog(new JFrame(), "Last Name is required", "Dialog",
-                        JOptionPane.ERROR_MESSAGE);
-                
-            } else if("".equals(Ciudad.getText())) {
-                
-                JOptionPane.showMessageDialog(new JFrame(), "Ciudad is required", "Dialog",
-                        JOptionPane.ERROR_MESSAGE);
-               
-            } else if("".equals(Direccion.getText())) {
-                
-                JOptionPane.showMessageDialog(new JFrame(), "Adress is required", "Dialog",
-                        JOptionPane.ERROR_MESSAGE);    
-                
-            } else {
-                id = Id.getColumns();
-                nombre = Nombre.getText();
-                apellidos = Apellidos.getText();
-                ciudad = Ciudad.getText();
-                direccion = Direccion.getText();
-                query = "INSERT INTO camper (Id, Nombre, Apellidos, Ciudad, Direccion) "
-                        + "VALUES ("+id+", "+nombre+" + "+apellidos+" + "+ciudad+" + "+direccion+")";
-          
-                
-                System.out.println(query);
-            }
-            
-            
-            
-            
-        }catch(Exception e){
-            System.out.println("Error " + e.getMessage());
-            
-        }
-    }//GEN-LAST:event_CrearUsuario
+    }//GEN-LAST:event_loadDataActionPerformed
 
+    private void loadDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadDataMouseClicked
+       int id = Id.getColumns();
+		String nombre = Nombre.getText();
+		String apellidos = Apellidos.getText();
+		String ciudad = Ciudad.getText();
+		String direccion = Direccion.getText();
+		String query;	
+    System.out.println(id);
+    System.out.println(nombre);
+    System.out.println(apellidos);
+    System.out.println(ciudad);
+    System.out.println(direccion);
+
+    // Connect to database
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        String url = "jdbc:MySQL://localhost:3306/Camper";
+        String user = "root";
+        String password = "1101685607";
+
+        Connection connection = DriverManager.getConnection(url, user, password);
+        Statement statement = connection.createStatement();
+
+        if ("".equals(Nombre.getText())) {
+            JOptionPane.showMessageDialog(new JFrame(), "First Name is required", "Dialog",
+                    JOptionPane.ERROR_MESSAGE);
+
+        } else if("".equals(Apellidos.getText())) {
+
+            JOptionPane.showMessageDialog(new JFrame(), "Last Name is required", "Dialog",
+                    JOptionPane.ERROR_MESSAGE);
+
+        } else if("".equals(Ciudad.getText())) {
+
+            JOptionPane.showMessageDialog(new JFrame(), "Ciudad is required", "Dialog",
+                    JOptionPane.ERROR_MESSAGE);
+
+        } else if("".equals(Direccion.getText())) {
+
+            JOptionPane.showMessageDialog(new JFrame(), "Adress is required", "Dialog",
+                    JOptionPane.ERROR_MESSAGE);
+
+        } else {
+    id = Id.getColumns(); 
+    nombre = Nombre.getText();
+    apellidos = Apellidos.getText();
+    ciudad = Ciudad.getText();
+    direccion = Direccion.getText();
+    
+    // Asegúrate de usar comillas simples para los valores de tipo String
+    query = "INSERT INTO camper (Id, Nombre, Apellidos, Ciudad, Direccion) "
+            + "VALUES ('"+id+"', '"+nombre+"', '"+apellidos+"', '"+ciudad+"', '"+direccion+"')";
+    
+    statement.executeUpdate(query);
+    Id.setText("");
+    Nombre.setText("");
+    Apellidos.setText("");
+    Ciudad.setText("");
+    Direccion.setText("");
+    
+    JOptionPane.showMessageDialog(null, "Successfully registered");
+    connection.close();
+}
+
+
+    }catch(Exception e){
+        System.out.println("Error " + e.getMessage());
+
+    }
+    }//GEN-LAST:event_loadDataMouseClicked
+  
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -276,7 +300,6 @@ public class JavaView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Apellidos;
     private javax.swing.JTextField Ciudad;
-    private javax.swing.JButton CrearBoton;
     private javax.swing.JTextField Direccion;
     private javax.swing.JTextField Id;
     private javax.swing.JTextField Nombre;
@@ -287,5 +310,10 @@ public class JavaView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
+    public javax.swing.JButton loadData;
     // End of variables declaration//GEN-END:variables
+
+    private void loadDataloadDataMouseClicked() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
