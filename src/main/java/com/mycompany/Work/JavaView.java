@@ -65,7 +65,7 @@ public class JavaView extends javax.swing.JFrame {
 
         jPanel2.setPreferredSize(new java.awt.Dimension(800, 450));
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 2, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Kannada Sangam MN", 2, 24)); // NOI18N
         jLabel1.setText("CREAR CAMPER");
 
         jLabel2.setFont(new java.awt.Font("Hiragino Sans", 2, 18)); // NOI18N
@@ -86,7 +86,7 @@ public class JavaView extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Hiragino Sans", 2, 18)); // NOI18N
         jLabel6.setText("Dirección:");
 
-        loadData.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 2, 18)); // NOI18N
+        loadData.setFont(new java.awt.Font("Kannada Sangam MN", 2, 18)); // NOI18N
         loadData.setText("¡Crear!");
         loadData.setActionCommand("loadData");
         loadData.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -211,7 +211,7 @@ public class JavaView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(Acudiente, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -325,9 +325,9 @@ public class JavaView extends javax.swing.JFrame {
     Telefono_fijo.setText("");
     Estado.setText("");
     Riesgo.setText("");
-    
-    JOptionPane.showMessageDialog(null, "Successfully registered");
+    showMessageDialog(null, "Successfully registered");
     connection.close();
+    
 }
 
 

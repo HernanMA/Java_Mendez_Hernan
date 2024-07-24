@@ -156,7 +156,7 @@
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="Direccion" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="25" max="32767" attributes="0"/>
+                  <EmptySpace pref="14" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="Acudiente" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
@@ -172,7 +172,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Helvetica Neue" size="24" style="2"/>
+              <Font name="Kannada Sangam MN" size="24" style="2"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CREAR CAMPER"/>
           </Properties>
@@ -223,7 +223,7 @@
         <Component class="javax.swing.JButton" name="loadData">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Hiragino Maru Gothic ProN" size="18" style="2"/>
+              <Font name="Kannada Sangam MN" size="18" style="2"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#xa1;Crear!"/>
             <Property name="actionCommand" type="java.lang.String" value="loadData"/>

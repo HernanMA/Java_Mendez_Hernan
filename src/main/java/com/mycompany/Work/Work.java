@@ -4,7 +4,6 @@
 
 package com.mycompany.work;
 
-
 /**
  *
  * @author hernan
@@ -17,6 +16,8 @@ package com.mycompany.work;
 public class Work {
 
     public static void main(String[] args) {
+        
+        
         
         JavaView view1 = new JavaView();
         view1.setVisible(true);
