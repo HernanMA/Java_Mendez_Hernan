@@ -4,6 +4,8 @@
 
 package com.mycompany.work;
 
+import View2.JavaView2;
+
 /**
  *
  * @author hernan
@@ -16,8 +18,6 @@ package com.mycompany.work;
 public class Work {
 
     public static void main(String[] args) {
-        
-        
         
         JavaView view1 = new JavaView();
         view1.setVisible(true);
