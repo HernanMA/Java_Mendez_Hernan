@@ -680,6 +680,7 @@ public class JavaView extends javax.swing.JFrame {
     private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
         
         String Id;
+        int notFound = 0;
         
         try {
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -707,8 +708,13 @@ public class JavaView extends javax.swing.JFrame {
                 Telefono_celular.setText(results.getString("Telefono_celular"));
                 Telefono_fijo.setText(results.getString("Telefono_fijo"));
                 Estado.setText(results.getString("Estado"));
-                Riesgo.setText(results.getString("Riesgo"));
+                Riesgo.setText(results.getString("Riesgo")); 
+                notFound = 1;
                 results.getInt("Id");
+            }
+            if (notFound == 0) {
+                JOptionPane.showMessageDialog(new JFrame(), "invalid ID", "Dialog",
+                    JOptionPane.ERROR_MESSAGE);
             }
         }
         
