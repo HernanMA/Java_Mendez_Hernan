@@ -455,12 +455,7 @@ public class JavaView extends javax.swing.JFrame {
     }//GEN-LAST:event_IdActionPerformed
 
     private void loadDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadDataActionPerformed
-        
-    }//GEN-LAST:event_loadDataActionPerformed
-
-    private void loadDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadDataMouseClicked
-                
-                int id = Id.getColumns();
+        int id = Id.getColumns();
                 String identificacion = Identificacion.getText();
 		String nombre = Nombre.getText();
 		String apellidos = Identificacion.getText();
@@ -550,6 +545,10 @@ public class JavaView extends javax.swing.JFrame {
         System.out.println("Error " + e.getMessage());
 
     }
+    }//GEN-LAST:event_loadDataActionPerformed
+
+    private void loadDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadDataMouseClicked
+                
     }//GEN-LAST:event_loadDataMouseClicked
 
     private void VerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerMouseClicked
@@ -589,44 +588,7 @@ public class JavaView extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, panel, "Teams List", JOptionPane.PLAIN_MESSAGE);
     }
     
-    public void loadData() {
-    try {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-
-        String url = "jdbc:mysql://localhost:3306/java_users_db";
-        String user = "root";
-        String pass = "";
-
-        Connection connection = DriverManager.getConnection(url, user, pass);
-        Statement statement = connection.createStatement();
-        
-        DefaultTableModel model = new DefaultTableModel(new String[]{
-            "Id", "Identificacion", "Nombre", "Apellidos", "Direccion", "Acudiente", "Telefono_celular", "Telefono_fijo", "Estado", "Riesgo"}, 0);
-      
-        Table1.setModel(model);
-        String sql = "SELECT * FROM Camper";
-        
-        ResultSet results = statement.executeQuery(sql);
-        Integer id;
-        String identificacion, nombre, apellidos, direccion, acudiente, telefono_celular, telefono_fijo, estado, riesgo;
-        
-        while (results.next()) {
-            id = results.getInt("Id");
-            identificacion = results.getString("Identificacion");
-            nombre = results.getString("Nombre");
-            apellidos = results.getString("Apellidos");
-            direccion = results.getString("Direccion");
-            acudiente = results.getString("Acudiente");
-            telefono_celular = results.getString("Telefono_celular");
-            telefono_fijo = results.getString("Telefono_fijo");
-            estado = results.getString("Estado");
-            riesgo = results.getString("Riesgo");
-            model.addRow(new Object[]{id, identificacion, nombre, apellidos, direccion, acudiente, telefono_celular, telefono_fijo, estado, riesgo});
-        }
-    } catch (Exception e) {
-        System.out.println("Error: " + e.getMessage());
-    }
-    }
+    
     
     private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
         // TODO add your handling code here:
@@ -665,9 +627,7 @@ public class JavaView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JavaView view2 = new JavaView();
-                view2.loadData();
-                view2.setVisible(true);
+                
             }
         });
     }
