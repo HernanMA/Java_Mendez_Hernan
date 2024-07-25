@@ -616,7 +616,49 @@ public class JavaView extends javax.swing.JFrame {
     }//GEN-LAST:event_EliminarMouseClicked
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-        // TODO add your handling code here:
+        
+        String Id;
+        int notFound = 0;
+        
+        try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        String url = "jdbc:mysql://localhost:3306/Camper";
+        String user = "root";
+        String pass = "1101685607";
+
+        Connection connection = DriverManager.getConnection(url, user, pass);
+        Statement statement = connection.createStatement();
+        
+        Id  = Busqueda.getText();
+        
+        if ("".equals(Id)) {
+            JOptionPane.showMessageDialog(new JFrame(), "Id is required", "Dialog",
+                    JOptionPane.ERROR_MESSAGE);
+            
+        }else {
+            
+            String sql = "SELECT * FROM Camper WHERE Id = " + Id;
+            ResultSet results = statement.executeQuery(sql);
+            while(results.next()) {
+                notFound = 1;
+                String sql2 = "DELETE FROM Camper WHERE Id = " + Id;
+                statement.executeUpdate(sql2);
+                Cargar();
+                connection.close();
+                
+            }
+            if (notFound == 0) {
+                JOptionPane.showMessageDialog(new JFrame(), "invalid ID", "Dialog",
+                    JOptionPane.ERROR_MESSAGE); 
+            }
+        }
+        
+        
+    }catch (Exception e) {
+        System.out.println("Error: " + e.getMessage());
+    }         
+    // System.out.println("SIUUUUUU");
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void ActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ActualizarMouseClicked
@@ -721,8 +763,6 @@ public class JavaView extends javax.swing.JFrame {
         
     }catch (Exception e) {
         System.out.println("Error: " + e.getMessage());
-    
-    // System.out.println("holiii");
     }//GEN-LAST:event_SearchActionPerformed
     
     }
