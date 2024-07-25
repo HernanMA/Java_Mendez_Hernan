@@ -39,9 +39,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel2" min="-2" pref="431" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Component id="jPanel1" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -134,7 +134,7 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="Ver" min="-2" pref="106" max="-2" attributes="0"/>
+                          <Component id="Cargar" min="-2" pref="106" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="Eliminar" min="-2" pref="106" max="-2" attributes="0"/>
                       </Group>
@@ -191,7 +191,7 @@
                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="loadData" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                      <Component id="Ver" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="Cargar" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                       <Component id="Eliminar" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                       <Component id="Actualizar" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                   </Group>
@@ -329,7 +329,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="Riesgo">
         </Component>
-        <Component class="javax.swing.JButton" name="Ver">
+        <Component class="javax.swing.JButton" name="Cargar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Kannada Sangam MN" size="18" style="2"/>
@@ -338,8 +338,8 @@
             <Property name="actionCommand" type="java.lang.String" value="loadData"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="VerMouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="VerActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CargarMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CargarActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton()"/>

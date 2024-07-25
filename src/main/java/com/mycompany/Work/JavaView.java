@@ -65,7 +65,7 @@ public class JavaView extends javax.swing.JFrame {
         Telefono_fijo = new javax.swing.JTextField();
         Estado = new javax.swing.JTextField();
         Riesgo = new javax.swing.JTextField();
-        Ver = new javax.swing.JButton();
+        Cargar = new javax.swing.JButton();
         Eliminar = new javax.swing.JButton();
         Actualizar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -129,17 +129,17 @@ public class JavaView extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Hiragino Sans", 2, 18)); // NOI18N
         jLabel12.setText("Estado");
 
-        Ver.setFont(new java.awt.Font("Kannada Sangam MN", 2, 18)); // NOI18N
-        Ver.setText("Ver");
-        Ver.setActionCommand("loadData");
-        Ver.addMouseListener(new java.awt.event.MouseAdapter() {
+        Cargar.setFont(new java.awt.Font("Kannada Sangam MN", 2, 18)); // NOI18N
+        Cargar.setText("Ver");
+        Cargar.setActionCommand("loadData");
+        Cargar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                VerMouseClicked(evt);
+                CargarMouseClicked(evt);
             }
         });
-        Ver.addActionListener(new java.awt.event.ActionListener() {
+        Cargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VerActionPerformed(evt);
+                CargarActionPerformed(evt);
             }
         });
 
@@ -234,7 +234,7 @@ public class JavaView extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(Ver, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Cargar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
                         .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(69, 69, 69))
@@ -280,7 +280,7 @@ public class JavaView extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loadData, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Ver, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Cargar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16))
@@ -551,13 +551,13 @@ public class JavaView extends javax.swing.JFrame {
                 
     }//GEN-LAST:event_loadDataMouseClicked
 
-    private void VerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerMouseClicked
+    private void CargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CargarMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_VerMouseClicked
+    }//GEN-LAST:event_CargarMouseClicked
 
-    private void VerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_VerActionPerformed
+    private void CargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarActionPerformed
+        Cargar();
+    }//GEN-LAST:event_CargarActionPerformed
 
     private void EliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EliminarMouseClicked
         // TODO add your handling code here:
@@ -571,27 +571,50 @@ public class JavaView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ActualizarMouseClicked
 
-     public static void showTeamsTable(Hashtable<Integer, Camper> campers) {
-        String[] columns = { "Id", "Identificacion", "Nombre", "Apellidos", "Direccion", "Acudiente", "Telefono_celular", "Telefono_fijo", "Estado", "Riesgo"};
-        DefaultTableModel model = new DefaultTableModel(columns, 0);
+    
+    
+    public void Cargar() {
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
 
-        campers.values().forEach(team -> {
-            Object[] row = { team.getId(), team.getIdentificacion(), team.getNombre(), team.getApellidos(), team.getDireccion(), team.getAcudiente(), team.getTelefono_celular(), team.getTelefono_fijo(), team.getEstado(), team.getRiesgo() };
-            model.addRow(row);
-        });
+        String url = "jdbc:mysql://localhost:3306/Camper";
+        String user = "root";
+        String pass = "1101685607";
 
-        JTable table = new JTable(model);
-        JScrollPane scrollPane = new JScrollPane(table);
-        JPanel panel = new JPanel();
-        panel.add(scrollPane);
-
-        JOptionPane.showMessageDialog(null, panel, "Teams List", JOptionPane.PLAIN_MESSAGE);
+        Connection connection = DriverManager.getConnection(url, user, pass);
+        Statement statement = connection.createStatement();
+        
+        DefaultTableModel model = new DefaultTableModel(new String[]{
+            "Id", "Identificacion", "Nombre", "Apellidos", "Direccion", "Acudiente", "Telefono_celular", "Telefono_fijo", "Estado", "Riesgo"}, 0);
+      
+        Table1.setModel(model);
+        String sql = "SELECT * FROM Camper";
+        
+        ResultSet results = statement.executeQuery(sql);
+        Integer id;
+        String identificacion, nombre, apellidos, direccion, acudiente, telefono_celular, telefono_fijo, estado, riesgo;
+        
+        while (results.next()) {
+            id = results.getInt("Id");
+            identificacion = results.getString("Identificacion");
+            nombre = results.getString("Nombre");
+            apellidos = results.getString("Apellidos");
+            direccion = results.getString("Direccion");
+            acudiente = results.getString("Acudiente");
+            telefono_celular = results.getString("Telefono_celular");
+            telefono_fijo = results.getString("Telefono_fijo");
+            estado = results.getString("Estado");
+            riesgo = results.getString("Riesgo");
+            model.addRow(new Object[]{id, identificacion, nombre, apellidos, direccion, acudiente, telefono_celular, telefono_fijo, estado, riesgo});
+        }
+    } catch (Exception e) {
+        System.out.println("Error: " + e.getMessage());
+    }
     }
     
-    
-    
     private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
-        // TODO add your handling code here:
+   
+// TODO add your handling code here:
     }//GEN-LAST:event_ActualizarActionPerformed
   
     
@@ -627,15 +650,19 @@ public class JavaView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+                JavaView javaView2 = new JavaView();
+                javaView2.Cargar();
+                javaView2.setVisible(true);
             }
         });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton Actualizar;
     private javax.swing.JTextField Acudiente;
     private javax.swing.JTextField Apellidos;
+    public javax.swing.JButton Cargar;
     private javax.swing.JTextField Direccion;
     public javax.swing.JButton Eliminar;
     private javax.swing.JTextField Estado;
@@ -646,7 +673,6 @@ public class JavaView extends javax.swing.JFrame {
     private javax.swing.JTable Table1;
     private javax.swing.JTextField Telefono_celular;
     private javax.swing.JTextField Telefono_fijo;
-    public javax.swing.JButton Ver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
