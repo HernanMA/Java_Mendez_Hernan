@@ -6,10 +6,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.*;
+import java.util.Hashtable;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -203,9 +207,11 @@ public class JavaView extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
-                                .addComponent(Telefono_fijo))
+                                .addComponent(Telefono_fijo, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel11))
                                 .addGap(71, 71, 71)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Riesgo)
@@ -227,15 +233,9 @@ public class JavaView extends javax.swing.JFrame {
                                 .addGap(16, 16, 16)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 352, Short.MAX_VALUE)
-                                .addComponent(jLabel11)
-                                .addGap(72, 72, 72))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(Ver, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Ver, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
                         .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(69, 69, 69))
         );
@@ -300,9 +300,16 @@ public class JavaView extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(Table1);
@@ -330,7 +337,7 @@ public class JavaView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -348,6 +355,101 @@ public class JavaView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    class Camper {
+    private int Id;
+    private String Identificacion;
+    private String Nombre;
+    private String Apellidos;
+    private String Direccion;
+    private String Acudiente;
+    private String Telefono_celular;
+    private String Telefono_fijo;
+    private String Estado;
+    private String Riesgo;
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int Id) {
+        this.Id = Id;
+    }
+
+    public String getIdentificacion() {
+        return Identificacion;
+    }
+
+    public void setIdentificacion(String Identificacion) {
+        this.Identificacion = Identificacion;
+    }
+
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
+    }
+
+    public String getApellidos() {
+        return Apellidos;
+    }
+
+    public void setApellidos(String Apellidos) {
+        this.Apellidos = Apellidos;
+    }
+
+    public String getDireccion() {
+        return Direccion;
+    }
+
+    public void setDireccion(String Direccion) {
+        this.Direccion = Direccion;
+    }
+
+    public String getAcudiente() {
+        return Acudiente;
+    }
+
+    public void setAcudiente(String Acudiente) {
+        this.Acudiente = Acudiente;
+    }
+
+    public String getTelefono_celular() {
+        return Telefono_celular;
+    }
+
+    public void setTelefono_celular(String Telefono_celular) {
+        this.Telefono_celular = Telefono_celular;
+    }
+
+    public String getTelefono_fijo() {
+        return Telefono_fijo;
+    }
+
+    public void setTelefono_fijo(String Telefono_fijo) {
+        this.Telefono_fijo = Telefono_fijo;
+    }
+
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+    }
+
+    public String getRiesgo() {
+        return Riesgo;
+    }
+
+    public void setRiesgo(String Riesgo) {
+        this.Riesgo = Riesgo;
+    }
+}
+    
+    
+    
     private void IdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdActionPerformed
         
     }//GEN-LAST:event_IdActionPerformed
@@ -424,7 +526,6 @@ public class JavaView extends javax.swing.JFrame {
     estado = Estado.getText();
     riesgo = Riesgo.getText();
     
-    // Asegúrate de usar comillas simples para los valores de tipo String
     query = "INSERT INTO camper (Id, Identificacion, Nombre, Apellidos, Direccion, Acudiente, Telefono_celular, Telefono_fijo, Estado, Riesgo) "
             + "VALUES ('"+id+"', '"+identificacion+"', '"+nombre+"', '"+apellidos+"', '"+direccion+"', '"+acudiente+"', '"+telefono_celular+"', '"+telefono_fijo+"', '"+estado+"', '"+riesgo+"')";
     
@@ -471,6 +572,23 @@ public class JavaView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ActualizarMouseClicked
 
+     public static void showTeamsTable(Hashtable<Integer, Camper> campers) {
+        String[] columns = { "Id", "Identificacion", "Nombre", "Apellidos", "Direccion", "Acudiente", "Telefono_celular", "Telefono_fijo", "Estado", "Riesgo"};
+        DefaultTableModel model = new DefaultTableModel(columns, 0);
+
+        campers.values().forEach(team -> {
+            Object[] row = { team.getId(), team.getIdentificacion(), team.getNombre(), team.getApellidos(), team.getDireccion(), team.getAcudiente(), team.getTelefono_celular(), team.getTelefono_fijo(), team.getEstado(), team.getRiesgo() };
+            model.addRow(row);
+        });
+
+        JTable table = new JTable(model);
+        JScrollPane scrollPane = new JScrollPane(table);
+        JPanel panel = new JPanel();
+        panel.add(scrollPane);
+
+        JOptionPane.showMessageDialog(null, panel, "Teams List", JOptionPane.PLAIN_MESSAGE);
+    }
+    
     public void loadData() {
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -482,26 +600,18 @@ public class JavaView extends javax.swing.JFrame {
         Connection connection = DriverManager.getConnection(url, user, pass);
         Statement statement = connection.createStatement();
         
-        // Actualiza el modelo de la tabla con las columnas de la tabla Camper
         DefaultTableModel model = new DefaultTableModel(new String[]{
-            "Id", "Identificacion", "Nombre", "Apellidos", "Direccion", 
-            "Acudiente", "Telefono_celular", "Telefono_fijo", "Estado", "Riesgo"}, 0);
+            "Id", "Identificacion", "Nombre", "Apellidos", "Direccion", "Acudiente", "Telefono_celular", "Telefono_fijo", "Estado", "Riesgo"}, 0);
       
-        // Supongo que Table es un JTable, actualiza el nombre si es necesario
         Table1.setModel(model);
-        
-        // Consulta SQL para seleccionar todos los datos de la tabla Camper
         String sql = "SELECT * FROM Camper";
         
         ResultSet results = statement.executeQuery(sql);
+        Integer id;
+        String identificacion, nombre, apellidos, direccion, acudiente, telefono_celular, telefono_fijo, estado, riesgo;
         
-        // Variables para almacenar los datos de cada columna
-        String id, identificacion, nombre, apellidos, direccion, 
-                acudiente, telefono_celular, telefono_fijo, estado, riesgo;
-        
-        // Itera sobre los resultados de la consulta y añade cada fila al modelo de la tabla
         while (results.next()) {
-            id = results.getString("Id");
+            id = results.getInt("Id");
             identificacion = results.getString("Identificacion");
             nombre = results.getString("Nombre");
             apellidos = results.getString("Apellidos");
@@ -511,9 +621,7 @@ public class JavaView extends javax.swing.JFrame {
             telefono_fijo = results.getString("Telefono_fijo");
             estado = results.getString("Estado");
             riesgo = results.getString("Riesgo");
-            
-            model.addRow(new Object[]{id, identificacion, nombre, apellidos, direccion, 
-                                      acudiente, telefono_celular, telefono_fijo, estado, riesgo});
+            model.addRow(new Object[]{id, identificacion, nombre, apellidos, direccion, acudiente, telefono_celular, telefono_fijo, estado, riesgo});
         }
     } catch (Exception e) {
         System.out.println("Error: " + e.getMessage());
