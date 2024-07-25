@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.table.DefaultTableModel;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -60,9 +61,9 @@ public class JavaView extends javax.swing.JFrame {
         Telefono_fijo = new javax.swing.JTextField();
         Estado = new javax.swing.JTextField();
         Riesgo = new javax.swing.JTextField();
-        loadData1 = new javax.swing.JButton();
-        loadData2 = new javax.swing.JButton();
-        loadData3 = new javax.swing.JButton();
+        Ver = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
+        Actualizar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Table1 = new javax.swing.JTable();
@@ -124,45 +125,45 @@ public class JavaView extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Hiragino Sans", 2, 18)); // NOI18N
         jLabel12.setText("Estado");
 
-        loadData1.setFont(new java.awt.Font("Kannada Sangam MN", 2, 18)); // NOI18N
-        loadData1.setText("Ver");
-        loadData1.setActionCommand("loadData");
-        loadData1.addMouseListener(new java.awt.event.MouseAdapter() {
+        Ver.setFont(new java.awt.Font("Kannada Sangam MN", 2, 18)); // NOI18N
+        Ver.setText("Ver");
+        Ver.setActionCommand("loadData");
+        Ver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loadData1MouseClicked(evt);
+                VerMouseClicked(evt);
             }
         });
-        loadData1.addActionListener(new java.awt.event.ActionListener() {
+        Ver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loadData1ActionPerformed(evt);
+                VerActionPerformed(evt);
             }
         });
 
-        loadData2.setFont(new java.awt.Font("Kannada Sangam MN", 2, 18)); // NOI18N
-        loadData2.setText("Eliminar");
-        loadData2.setActionCommand("loadData");
-        loadData2.addMouseListener(new java.awt.event.MouseAdapter() {
+        Eliminar.setFont(new java.awt.Font("Kannada Sangam MN", 2, 18)); // NOI18N
+        Eliminar.setText("Eliminar");
+        Eliminar.setActionCommand("loadData");
+        Eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loadData2MouseClicked(evt);
+                EliminarMouseClicked(evt);
             }
         });
-        loadData2.addActionListener(new java.awt.event.ActionListener() {
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loadData2ActionPerformed(evt);
+                EliminarActionPerformed(evt);
             }
         });
 
-        loadData3.setFont(new java.awt.Font("Kannada Sangam MN", 2, 18)); // NOI18N
-        loadData3.setText("Actualizar");
-        loadData3.setActionCommand("loadData");
-        loadData3.addMouseListener(new java.awt.event.MouseAdapter() {
+        Actualizar.setFont(new java.awt.Font("Kannada Sangam MN", 2, 18)); // NOI18N
+        Actualizar.setText("Actualizar");
+        Actualizar.setActionCommand("loadData");
+        Actualizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loadData3MouseClicked(evt);
+                ActualizarMouseClicked(evt);
             }
         });
-        loadData3.addActionListener(new java.awt.event.ActionListener() {
+        Actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loadData3ActionPerformed(evt);
+                ActualizarActionPerformed(evt);
             }
         });
 
@@ -220,7 +221,7 @@ public class JavaView extends javax.swing.JFrame {
                                 .addComponent(jLabel1))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(26, 26, 26)
-                                .addComponent(loadData3)
+                                .addComponent(Actualizar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(loadData, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(16, 16, 16)))
@@ -233,9 +234,9 @@ public class JavaView extends javax.swing.JFrame {
                                 .addGap(72, 72, 72))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(loadData1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Ver, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(37, 37, 37)))
-                        .addComponent(loadData2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(69, 69, 69))
         );
         jPanel2Layout.setVerticalGroup(
@@ -279,9 +280,9 @@ public class JavaView extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loadData, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loadData1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loadData2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loadData3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Ver, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16))
         );
 
@@ -312,8 +313,8 @@ public class JavaView extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -450,29 +451,78 @@ public class JavaView extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_loadDataMouseClicked
 
-    private void loadData1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadData1MouseClicked
+    private void VerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_loadData1MouseClicked
+    }//GEN-LAST:event_VerMouseClicked
 
-    private void loadData1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadData1ActionPerformed
+    private void VerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_loadData1ActionPerformed
+    }//GEN-LAST:event_VerActionPerformed
 
-    private void loadData2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadData2MouseClicked
+    private void EliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EliminarMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_loadData2MouseClicked
+    }//GEN-LAST:event_EliminarMouseClicked
 
-    private void loadData2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadData2ActionPerformed
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_loadData2ActionPerformed
+    }//GEN-LAST:event_EliminarActionPerformed
 
-    private void loadData3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadData3MouseClicked
+    private void ActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ActualizarMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_loadData3MouseClicked
+    }//GEN-LAST:event_ActualizarMouseClicked
 
-    private void loadData3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadData3ActionPerformed
+    public void loadData() {
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        String url = "jdbc:mysql://localhost:3306/java_users_db";
+        String user = "root";
+        String pass = "";
+
+        Connection connection = DriverManager.getConnection(url, user, pass);
+        Statement statement = connection.createStatement();
+        
+        // Actualiza el modelo de la tabla con las columnas de la tabla Camper
+        DefaultTableModel model = new DefaultTableModel(new String[]{
+            "Id", "Identificacion", "Nombre", "Apellidos", "Direccion", 
+            "Acudiente", "Telefono_celular", "Telefono_fijo", "Estado", "Riesgo"}, 0);
+      
+        // Supongo que Table es un JTable, actualiza el nombre si es necesario
+        Table1.setModel(model);
+        
+        // Consulta SQL para seleccionar todos los datos de la tabla Camper
+        String sql = "SELECT * FROM Camper";
+        
+        ResultSet results = statement.executeQuery(sql);
+        
+        // Variables para almacenar los datos de cada columna
+        String id, identificacion, nombre, apellidos, direccion, 
+                acudiente, telefono_celular, telefono_fijo, estado, riesgo;
+        
+        // Itera sobre los resultados de la consulta y añade cada fila al modelo de la tabla
+        while (results.next()) {
+            id = results.getString("Id");
+            identificacion = results.getString("Identificacion");
+            nombre = results.getString("Nombre");
+            apellidos = results.getString("Apellidos");
+            direccion = results.getString("Direccion");
+            acudiente = results.getString("Acudiente");
+            telefono_celular = results.getString("Telefono_celular");
+            telefono_fijo = results.getString("Telefono_fijo");
+            estado = results.getString("Estado");
+            riesgo = results.getString("Riesgo");
+            
+            model.addRow(new Object[]{id, identificacion, nombre, apellidos, direccion, 
+                                      acudiente, telefono_celular, telefono_fijo, estado, riesgo});
+        }
+    } catch (Exception e) {
+        System.out.println("Error: " + e.getMessage());
+    }
+    }
+    
+    private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_loadData3ActionPerformed
+    }//GEN-LAST:event_ActualizarActionPerformed
   
     
     
@@ -507,15 +557,19 @@ public class JavaView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JavaView().setVisible(true);
+                JavaView view2 = new JavaView();
+                view2.loadData();
+                view2.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton Actualizar;
     private javax.swing.JTextField Acudiente;
     private javax.swing.JTextField Apellidos;
     private javax.swing.JTextField Direccion;
+    public javax.swing.JButton Eliminar;
     private javax.swing.JTextField Estado;
     private javax.swing.JTextField Id;
     private javax.swing.JTextField Identificacion;
@@ -524,6 +578,7 @@ public class JavaView extends javax.swing.JFrame {
     private javax.swing.JTable Table1;
     private javax.swing.JTextField Telefono_celular;
     private javax.swing.JTextField Telefono_fijo;
+    public javax.swing.JButton Ver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -539,9 +594,6 @@ public class JavaView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JButton loadData;
-    public javax.swing.JButton loadData1;
-    public javax.swing.JButton loadData2;
-    public javax.swing.JButton loadData3;
     // End of variables declaration//GEN-END:variables
 
     private void loadDataloadDataMouseClicked() {

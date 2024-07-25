@@ -4,8 +4,6 @@
 
 package com.mycompany.work;
 
-import View2.JavaView2;
-
 /**
  *
  * @author hernan
