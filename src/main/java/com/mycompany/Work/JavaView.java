@@ -564,7 +564,8 @@ public class JavaView extends javax.swing.JFrame {
         } else {
     id = Id.getColumns(); 
     nombre = Nombre.getText();
-    apellidos = Identificacion.getText();
+    identificacion = Identificacion.getText();
+    apellidos = Apellidos.getText();
     direccion = Direccion.getText();
     acudiente = Acudiente.getText();
     telefono_celular = Telefono_celular.getText();
