@@ -863,6 +863,7 @@ public class JavaView extends javax.swing.JFrame {
             public void run() {
                 JavaView javaView2 = new JavaView();
                 javaView2.Cargar();
+                javaView2.setLocationRelativeTo(null);
                 javaView2.setVisible(true);
                 
             }
