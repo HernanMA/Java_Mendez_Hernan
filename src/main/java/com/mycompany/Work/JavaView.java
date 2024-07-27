@@ -709,7 +709,66 @@ public class JavaView extends javax.swing.JFrame {
     }
     
     private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
-   
+        String Id;
+    int notFound = 0;
+
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        String url = "jdbc:mysql://localhost:3306/Camper";
+        String user = "root";
+        String pass = "1101685607";
+
+        Connection connection = DriverManager.getConnection(url, user, pass);
+        Statement statement = connection.createStatement();
+
+        Id = Busqueda.getText();
+        String identificacion, nombre, apellidos, direccion, acudiente, telefono_celular, telefono_fijo, estado, riesgo;
+
+        if ("".equals(Id)) {
+            JOptionPane.showMessageDialog(new JFrame(), "Id is required", "Dialog",
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
+            String sql = "SELECT * FROM Camper WHERE Id = " + Id;
+            ResultSet results = statement.executeQuery(sql);
+
+            if (results.next()) {
+                notFound = 1;
+                nombre = Nombre.getText();
+                identificacion = Identificacion.getText();
+                apellidos = Apellidos.getText();
+                direccion = Direccion.getText();
+                acudiente = Acudiente.getText();
+                telefono_celular = Telefono_celular.getText();
+                telefono_fijo = Telefono_fijo.getText();
+                estado = Estado.getText();
+                riesgo = Riesgo.getText();
+
+                String sql2 = "UPDATE Camper SET Nombre = '" + nombre + 
+                              "', Identificacion = '" + identificacion + 
+                              "', Apellidos = '" + apellidos + 
+                              "', Direccion = '" + direccion + 
+                              "', Acudiente = '" + acudiente + 
+                              "', Telefono_celular = '" + telefono_celular + 
+                              "', Telefono_fijo = '" + telefono_fijo + 
+                              "', Estado = '" + estado + 
+                              "', Riesgo = '" + riesgo + 
+                              "' WHERE Id = " + Id;
+
+                statement.executeUpdate(sql2);
+                Cargar();
+                connection.close();
+            }
+
+            if (notFound == 0) {
+                JOptionPane.showMessageDialog(new JFrame(), "Invalid ID", "Dialog",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    } catch (Exception e) {
+        System.out.println("Error: " + e.getMessage());
+    }
+
 // TODO add your handling code here:
     }//GEN-LAST:event_ActualizarActionPerformed
 

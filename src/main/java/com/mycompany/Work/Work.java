@@ -20,8 +20,6 @@ public class Work {
         JavaView view1 = new JavaView();
         view1.setVisible(true);
         
-        
-        
         System.out.println("Hello World!");
         
     }
