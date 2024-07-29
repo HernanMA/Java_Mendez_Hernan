@@ -531,9 +531,9 @@ public class JavaView extends javax.swing.JFrame {
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        String url = "jdbc:MySQL://localhost:3306/Camper";
-        String user = "root";
-        String password = "1101685607";
+        String url = "jdbc:MySQL://bhckcpjmhzlyhoxpbbqz-mysql.services.clever-cloud.com:3306/bhckcpjmhzlyhoxpbbqz";
+        String user = "ufvc9rgo39mfrkjz";
+        String password = "Rql2h4vtPCoSUzbaqZLf";
 
         Connection connection = DriverManager.getConnection(url, user, password);
         Statement statement = connection.createStatement();
@@ -573,7 +573,7 @@ public class JavaView extends javax.swing.JFrame {
     estado = Estado.getText();
     riesgo = Riesgo.getText();
     
-    query = "INSERT INTO camper (Id, Identificacion, Nombre, Apellidos, Direccion, Acudiente, Telefono_celular, Telefono_fijo, Estado, Riesgo) "
+    query = "INSERT INTO Camper (Id, Identificacion, Nombre, Apellidos, Direccion, Acudiente, Telefono_celular, Telefono_fijo, Estado, Riesgo) "
             + "VALUES ('"+id+"', '"+identificacion+"', '"+nombre+"', '"+apellidos+"', '"+direccion+"', '"+acudiente+"', '"+telefono_celular+"', '"+telefono_fijo+"', '"+estado+"', '"+riesgo+"')";
     
     statement.executeUpdate(query);
@@ -624,9 +624,9 @@ public class JavaView extends javax.swing.JFrame {
         try {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        String url = "jdbc:mysql://localhost:3306/Camper";
-        String user = "root";
-        String pass = "1101685607";
+        String url = "jdbc:mysql://bhckcpjmhzlyhoxpbbqz-mysql.services.clever-cloud.com:3306/bhckcpjmhzlyhoxpbbqz";
+        String user = "ufvc9rgo39mfrkjz";
+        String pass = "Rql2h4vtPCoSUzbaqZLf";
 
         Connection connection = DriverManager.getConnection(url, user, pass);
         Statement statement = connection.createStatement();
@@ -673,9 +673,9 @@ public class JavaView extends javax.swing.JFrame {
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        String url = "jdbc:mysql://localhost:3306/Camper";
-        String user = "root";
-        String pass = "1101685607";
+        String url = "jdbc:mysql://bhckcpjmhzlyhoxpbbqz-mysql.services.clever-cloud.com:3306/bhckcpjmhzlyhoxpbbqz";
+        String user = "ufvc9rgo39mfrkjz";
+        String pass = "Rql2h4vtPCoSUzbaqZLf";
 
         Connection connection = DriverManager.getConnection(url, user, pass);
         Statement statement = connection.createStatement();
@@ -710,14 +710,14 @@ public class JavaView extends javax.swing.JFrame {
     
     private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
         String Id;
-    int notFound = 0;
+        int notFound = 0;
 
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        String url = "jdbc:mysql://localhost:3306/Camper";
-        String user = "root";
-        String pass = "1101685607";
+        String url = "jdbc:mysql://bhckcpjmhzlyhoxpbbqz-mysql.services.clever-cloud.com:3306/bhckcpjmhzlyhoxpbbqz";
+        String user = "ufvc9rgo39mfrkjz";
+        String pass = "Rql2h4vtPCoSUzbaqZLf";
 
         Connection connection = DriverManager.getConnection(url, user, pass);
         Statement statement = connection.createStatement();
@@ -788,9 +788,9 @@ public class JavaView extends javax.swing.JFrame {
         try {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        String url = "jdbc:mysql://localhost:3306/Camper";
-        String user = "root";
-        String pass = "1101685607";
+        String url = "jdbc:mysql://bhckcpjmhzlyhoxpbbqz-mysql.services.clever-cloud.com:3306/bhckcpjmhzlyhoxpbbqz";
+        String user = "ufvc9rgo39mfrkjz";
+        String pass = "Rql2h4vtPCoSUzbaqZLf";
 
         Connection connection = DriverManager.getConnection(url, user, pass);
         Statement statement = connection.createStatement();
