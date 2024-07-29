@@ -506,7 +506,7 @@ public class JavaView extends javax.swing.JFrame {
     }//GEN-LAST:event_IdActionPerformed
 
     private void loadDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadDataActionPerformed
-        int id = Id.getColumns();
+                int id = Id.getColumns();
                 String identificacion = Identificacion.getText();
 		String nombre = Nombre.getText();
 		String apellidos = Identificacion.getText();
