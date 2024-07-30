@@ -265,6 +265,41 @@ public class Hospi extends javax.swing.JFrame {
 
     private void ReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReadActionPerformed
         // READ
+        String Id;
+        int notFound = 0;
+        
+        try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+            
+            String url = "jdbc:mysql://localhost:3306/Hospital";
+            String user = "root";
+            String password = "1101685607";
+            
+            Connection connection = DriverManager.getConnection(url, user, password);
+            Statement statement = connection.createStatement();
+        
+        Id = Buscar.getText();
+        if ("".equals(Id)) {
+            JOptionPane.showMessageDialog(new JFrame(), "Id is required", "Dialog",
+                    JOptionPane.ERROR_MESSAGE);
+            
+        }else {
+            String sql = "SELECT * FROM Hospital WHERE Id = " + Id;
+            ResultSet results = statement.executeQuery(sql);
+            while(results.next()) {
+                Nombre.setText(results.getString("Nombre"));
+                Direccion.setText(results.getString("Direccion"));
+            }
+            if (notFound == 0) {
+                JOptionPane.showMessageDialog(new JFrame(), "invalid ID", "Dialog",
+                    JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
+        
+    }catch (Exception e) {
+        System.out.println("Error: " + e.getMessage());
+    }
     }//GEN-LAST:event_ReadActionPerformed
 
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
