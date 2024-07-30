@@ -14,14 +14,10 @@ package com.mycompany.work;
  * @author hernan
  */
 public class Work {
-
     public static void main(String[] args) {
-        
-        JavaView view1 = new JavaView();
-        view1.setVisible(true);
-        
-        System.out.println("Hello World!");
-        
+        // Aquí puedes inicializar tu aplicación, por ejemplo:
+        Menu menu = new Menu();
+        menu.setVisible(true);
     }
 }
 

@@ -9,6 +9,7 @@ import java.sql.*;
 import java.util.Hashtable;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JPanel;
@@ -29,10 +30,20 @@ public class JavaView extends javax.swing.JFrame {
     /**
      * Creates new form JavaView
      */
-    public JavaView() {
+    public JavaView() {  
         initComponents();
-    }
+         setTitle("JavaView");
+        setSize(1032, 837);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
 
+        JPanel panel = new JPanel();
+        add(panel);
+
+        JLabel label = new JLabel("This is JavaView");
+        panel.add(label);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
