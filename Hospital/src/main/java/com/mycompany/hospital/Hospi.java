@@ -6,6 +6,7 @@ package com.mycompany.hospital;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -47,6 +48,7 @@ public class Hospi extends javax.swing.JFrame {
         Read = new javax.swing.JButton();
         Update = new javax.swing.JButton();
         Delete = new javax.swing.JButton();
+        Buscar = new javax.swing.JTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -122,6 +124,12 @@ public class Hospi extends javax.swing.JFrame {
             }
         });
 
+        Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -142,11 +150,14 @@ public class Hospi extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(Create)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Read)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Update)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Delete)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Read)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Update)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Delete))
+                    .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -170,7 +181,8 @@ public class Hospi extends javax.swing.JFrame {
                     .addComponent(Read, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Update, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -187,7 +199,7 @@ public class Hospi extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -257,11 +269,95 @@ public class Hospi extends javax.swing.JFrame {
 
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
         // UPDATE
+        String Id;
+        int notFound = 0;
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            
+            String url = "jdbc:mysql://localhost:3306/Hospital";
+            String user = "root";
+            String password = "1101685607";
+            
+            Connection connection = DriverManager.getConnection(url, user, password);
+            Statement statement = connection.createStatement();
+            
+            Id = Buscar.getText();
+            String nombre, direccion;
+            
+            if ("".equals(Id)) {
+            JOptionPane.showMessageDialog(new JFrame(), "Id is required", "Dialog",
+                    JOptionPane.ERROR_MESSAGE);
+            
+            } else {
+            String sql1 = "SELECT * FROM Hospital WHERE Id = " + Id;
+            ResultSet results = statement.executeQuery(sql1);
+            
+            if (results.next()) {
+                notFound = 1;
+                nombre = Nombre.getText();
+                direccion = Direccion.getText();
+                
+                String sql2 = "UPDATE Hospital SET Nombre = '" + nombre + 
+                            "', Direccion = '" + direccion +
+                            "' WHERE Id = " + Id;
+                
+                statement.executeUpdate(sql2);
+                connection.close();
+            }
+            if (notFound == 0) {
+                JOptionPane.showMessageDialog(new JFrame(), "Invalid ID", "Dialog",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+            
+            }
+        } catch (Exception e) {
+        System.out.println("Error: " + e.getMessage());
+    }
     }//GEN-LAST:event_UpdateActionPerformed
 
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
         // DELETE
+        String Id;
+        int notFound = 0;
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            
+            String url = "jdbc:mysql://localhost:3306/Hospital";
+            String user = "root";
+            String password = "1101685607";
+            
+            Connection connection = DriverManager.getConnection(url, user, password);
+            Statement statement = connection.createStatement();
+            
+            Id = Buscar.getText();
+            
+            if ("".equals(Id)) {
+                JOptionPane.showMessageDialog(new JFrame(), "ID del hospital requerido", "Dialog",
+                                JOptionPane.ERROR_MESSAGE);
+            }else {
+                String sql = "SELECT * FROM Hospital WHERE Id = " + Id;
+                ResultSet results = statement.executeQuery(sql);
+                while(results.next()) {
+                    notFound = 1;
+                    String sql2 = "DELETE FROM Hospital WHERE Id = " + Id;
+                    statement.executeUpdate(sql2);
+                    connection.close();
+                }
+                if (notFound == 0) {
+                    JOptionPane.showMessageDialog(new JFrame(), "invalid ID", "Dialog",
+                    JOptionPane.ERROR_MESSAGE); 
+                }
+            }
+        }catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }//GEN-LAST:event_DeleteActionPerformed
+
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,6 +395,7 @@ public class Hospi extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Buscar;
     private javax.swing.JButton Create;
     private javax.swing.JButton Delete;
     private javax.swing.JTextField Direccion;
