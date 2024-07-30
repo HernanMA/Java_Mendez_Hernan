@@ -6,6 +6,7 @@ package com.mycompany.hospital;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -154,14 +155,13 @@ public class Hospi extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(Create)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Read)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Update)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Delete))
-                    .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Buscar)
+                    .addComponent(Read, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Update)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Delete)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -235,12 +235,15 @@ public class Hospi extends javax.swing.JFrame {
         System.out.println(direccion);
 
         Properties properties = new Properties();
-        try (FileInputStream input = new FileInputStream("config.properties")) {
+       try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
+            if (input == null) {
+                JOptionPane.showMessageDialog(new JFrame(), "Config file not found", "Dialog", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             properties.load(input);
         } catch (IOException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(new JFrame(), "Error loading configuration file", "Dialog",
-                    JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), "Error loading configuration file", "Dialog", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -283,14 +286,17 @@ public class Hospi extends javax.swing.JFrame {
         // READ
         String Id;
         int notFound = 0;
+        
         Properties properties = new Properties();
-
-        try (FileInputStream input = new FileInputStream("config.properties")) {
+       try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
+            if (input == null) {
+                JOptionPane.showMessageDialog(new JFrame(), "Config file not found", "Dialog", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             properties.load(input);
         } catch (IOException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(new JFrame(), "Error loading configuration file", "Dialog",
-                    JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), "Error loading configuration file", "Dialog", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -336,12 +342,15 @@ public class Hospi extends javax.swing.JFrame {
         int notFound = 0;
 
         Properties properties = new Properties();
-        try (FileInputStream input = new FileInputStream("config.properties")) {
+       try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
+            if (input == null) {
+                JOptionPane.showMessageDialog(new JFrame(), "Config file not found", "Dialog", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             properties.load(input);
         } catch (IOException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(new JFrame(), "Error loading configuration file", "Dialog",
-                    JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), "Error loading configuration file", "Dialog", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -395,12 +404,15 @@ public class Hospi extends javax.swing.JFrame {
         int notFound = 0;
 
         Properties properties = new Properties();
-        try (FileInputStream input = new FileInputStream("config.properties")) {
+       try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
+            if (input == null) {
+                JOptionPane.showMessageDialog(new JFrame(), "Config file not found", "Dialog", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             properties.load(input);
         } catch (IOException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(new JFrame(), "Error loading configuration file", "Dialog",
-                    JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), "Error loading configuration file", "Dialog", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
