@@ -4,10 +4,14 @@
  */
 package com.mycompany.hospital;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -225,81 +229,105 @@ public class Hospi extends javax.swing.JFrame {
         String nombre = Nombre.getText();
         String direccion = Direccion.getText();
         String query;
-        
+
         System.out.println(id);
         System.out.println(nombre);
         System.out.println(direccion);
-        
+
+        Properties properties = new Properties();
+        try (FileInputStream input = new FileInputStream("config.properties")) {
+            properties.load(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(new JFrame(), "Error loading configuration file", "Dialog",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String url = properties.getProperty("db.url");
+        String user = properties.getProperty("db.user");
+        String password = properties.getProperty("db.password");
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            
-            String url = "jdbc:mysql://localhost:3306/Hospital";
-            String user = "root";
-            String password = "1101685607";
-            
             Connection connection = DriverManager.getConnection(url, user, password);
             Statement statement = connection.createStatement();
-            
+
             if ("".equals(Nombre.getText())) {
                 JOptionPane.showMessageDialog(new JFrame(), "Nombre del hospital requerido", "Dialog",
-                                JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.ERROR_MESSAGE);
             } else {
                 id = Id.getColumns();
                 nombre = Nombre.getText();
                 direccion = Direccion.getText();
-                
-                query = "INSERT INTO Hospital (Id, Nombre, Direccion)"
-                        + "VALUES ('"+id+"', '"+nombre+"', '"+direccion+"')";
-                
+
+                query = "INSERT INTO Hospital (Id, Nombre, Direccion) VALUES ('" + id + "', '" + nombre + "', '" + direccion + "')";
+
                 statement.executeUpdate(query);
                 Id.setText("");
                 Nombre.setText("");
                 Direccion.setText("");
-                showMessageDialog(null, "Registro Exitoso");
+                JOptionPane.showMessageDialog(null, "Registro Exitoso");
+
+                statement.close();
                 connection.close();
             }
-            }catch(Exception e) {
-                    System.out.println("Error" + e.getMessage());
-        }  
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(new JFrame(), "Database connection error", "Dialog",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_CreateActionPerformed
 
     private void ReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReadActionPerformed
         // READ
         String Id;
         int notFound = 0;
-        
+        Properties properties = new Properties();
+
+        try (FileInputStream input = new FileInputStream("config.properties")) {
+            properties.load(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(new JFrame(), "Error loading configuration file", "Dialog",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String url = properties.getProperty("db.url");
+        String user = properties.getProperty("db.user");
+        String password = properties.getProperty("db.password");
+
         try {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-            
-            String url = "jdbc:mysql://localhost:3306/Hospital";
-            String user = "root";
-            String password = "1101685607";
-            
+            Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(url, user, password);
             Statement statement = connection.createStatement();
-        
-        Id = Buscar.getText();
-        if ("".equals(Id)) {
-            JOptionPane.showMessageDialog(new JFrame(), "Id is required", "Dialog",
-                    JOptionPane.ERROR_MESSAGE);
-            
-        }else {
-            String sql = "SELECT * FROM Hospital WHERE Id = " + Id;
-            ResultSet results = statement.executeQuery(sql);
-            while(results.next()) {
-                Nombre.setText(results.getString("Nombre"));
-                Direccion.setText(results.getString("Direccion"));
+
+            Id = Buscar.getText();
+            if ("".equals(Id)) {
+                JOptionPane.showMessageDialog(new JFrame(), "Id is required", "Dialog",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                String sql = "SELECT * FROM Hospital WHERE Id = " + Id;
+                ResultSet results = statement.executeQuery(sql);
+                while (results.next()) {
+                    Nombre.setText(results.getString("Nombre"));
+                    Direccion.setText(results.getString("Direccion"));
+                    notFound++;
+                }
+                if (notFound == 0) {
+                    JOptionPane.showMessageDialog(new JFrame(), "Invalid ID", "Dialog",
+                            JOptionPane.ERROR_MESSAGE);
+                }
             }
-            if (notFound == 0) {
-                JOptionPane.showMessageDialog(new JFrame(), "invalid ID", "Dialog",
+
+            statement.close();
+            connection.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(new JFrame(), "Database connection error", "Dialog",
                     JOptionPane.ERROR_MESSAGE);
-            }
         }
-        
-        
-    }catch (Exception e) {
-        System.out.println("Error: " + e.getMessage());
-    }
     }//GEN-LAST:event_ReadActionPerformed
 
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
