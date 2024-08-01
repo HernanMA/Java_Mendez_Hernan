@@ -15,7 +15,6 @@ import javax.swing.JPanel;
  * @author hernan
  */
 public class Menu extends javax.swing.JFrame {
-
     /**
      * Creates new form Menu
      */
@@ -157,15 +156,21 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AgregarEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarEquiposActionPerformed
-        // TODO add your handling code here:
+        Menu2 menu = new Menu2();
+        menu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_AgregarEquiposActionPerformed
 
     private void AgregarPartidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarPartidosActionPerformed
-        // TODO add your handling code here:
+        Menu3 menu1 = new Menu3();
+        menu1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_AgregarPartidosActionPerformed
 
     private void VerInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerInfoActionPerformed
-        // TODO add your handling code here:
+        Menu4 menu2 = new Menu4();
+        menu2.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_VerInfoActionPerformed
 
     /**

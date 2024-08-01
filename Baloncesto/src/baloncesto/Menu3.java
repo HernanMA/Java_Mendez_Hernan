@@ -4,6 +4,10 @@
  */
 package baloncesto;
 
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author hernan
@@ -15,6 +19,16 @@ public class Menu3 extends javax.swing.JFrame {
      */
     public Menu3() {
         initComponents();
+        setTitle("Menu2");
+        setSize(890, 462);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        JPanel panel = new JPanel();
+        add(panel);
+
+        JLabel label = new JLabel("Create your team!");
+        panel.add(label);
     }
 
     /**
