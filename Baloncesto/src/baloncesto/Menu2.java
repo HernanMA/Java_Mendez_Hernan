@@ -19,7 +19,7 @@ public class Menu2 extends javax.swing.JFrame {
      */
     public Menu2() {
         initComponents();
-        setTitle("Menu2");
+        setTitle("Create Team");
         setSize(464, 340);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -29,6 +29,124 @@ public class Menu2 extends javax.swing.JFrame {
 
         JLabel label = new JLabel("Create your team!");
         panel.add(label);
+    }
+    
+    public class Partido {
+    protected String Fecha;
+    protected int Equipo_Local_Id;
+    protected int Equipo_Visitante_Id;
+    protected int Cestas_Local;
+    protected int Cestas_Visitante;
+    protected boolean Finalizado;
+    protected String Tipo;
+    protected int Jornada;
+    protected String Ronda;
+    protected String Ganador;
+    
+    public Partido() {
+    }
+    
+    public Partido (String Fecha, int Equipo_Local_Id, int Equipo_Visitante_Id, int Cestas_Local,int Cestas_Visitante, boolean Finalizado, String Tipo, int Jornada, String Ronda, String Ganador) {
+        this.Fecha = Fecha;
+        this.Equipo_Local_Id = Equipo_Local_Id;
+        this.Equipo_Visitante_Id = Equipo_Visitante_Id;
+        this.Cestas_Local = Cestas_Local;
+        this.Cestas_Visitante = Cestas_Visitante;
+        this.Finalizado = Finalizado;
+        this.Tipo = Tipo;
+        this.Jornada = Jornada;
+        this.Ronda = Ronda;
+        this.Ganador = Ganador;
+    }
+    
+    
+    public String getfecha() {
+        return Fecha;
+    }
+    
+    public void setfecha(String Fecha) {
+        this.Fecha = Fecha;
+    }
+    
+    
+    public int getequipo_Local_Id() {
+        return Equipo_Local_Id;
+    }
+    
+    public void setequipo_Local_Id(int Equipo_Local_Id) {
+        this.Equipo_Local_Id = Equipo_Local_Id ;
+    }
+    
+    
+    public int getequipo_Visitante_Id() {
+        return Equipo_Visitante_Id;
+    }
+    
+    public void setquipo_Visitante_Id(int Equipo_Visitante_Id) {
+        this.Equipo_Visitante_Id = Equipo_Visitante_Id;
+    }
+    
+    
+    public int getcestas_Local() {
+        return Cestas_Local;
+    }
+    
+    public void setcestas_Local(int Cestas_Local) {
+        this.Cestas_Local = Cestas_Local;
+    }
+    
+    
+    public int getcestas_Visitante() {
+        return Cestas_Visitante;
+    }
+    
+    public void setcestas_Visitante(int Cestas_Visitante) {
+        this.Cestas_Visitante = Cestas_Visitante;
+    }
+    
+    
+    public boolean getfinalizado() {
+        return Finalizado;
+    }
+    
+    public void setfinalizado(boolean Finalizado) {
+        this.Finalizado = Finalizado;
+    }
+    
+    
+    public String gettipo() {
+        return Tipo;
+    }
+    
+    public void settipo(String Tipo) {
+        this.Tipo = Tipo;
+    }
+    
+    
+    public int getjornada() {
+        return Jornada;
+    }
+    
+    public void setjornada(int Jornada) {
+        this.Jornada = Jornada;
+    }
+    
+    
+    public String getronda() {
+        return Ronda;
+    }
+    
+    public void setronda(String Ronda) {
+        this.Ronda = Ronda;
+    }
+    
+    
+    public String getganador() {
+        return Ganador;
+    }
+    
+    public void set(String Ganador) {
+        this.Ganador = Ganador;
     }
 
     /**

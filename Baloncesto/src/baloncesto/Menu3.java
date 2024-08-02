@@ -17,9 +17,10 @@ public class Menu3 extends javax.swing.JFrame {
     /**
      * Creates new form Menu3
      */
+    public class Menu3 extends Partido {
     public Menu3() {
         initComponents();
-        setTitle("Menu2");
+        setTitle("Create Game");
         setSize(890, 462);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -29,8 +30,7 @@ public class Menu3 extends javax.swing.JFrame {
 
         JLabel label = new JLabel("Create your team!");
         panel.add(label);
-    }
-
+    } 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -222,7 +222,9 @@ public class Menu3 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-        // TODO add your handling code here:
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BackActionPerformed
 
     /**

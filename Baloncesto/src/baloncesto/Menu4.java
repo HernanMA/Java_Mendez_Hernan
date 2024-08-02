@@ -19,7 +19,7 @@ public class Menu4 extends javax.swing.JFrame {
      */
     public Menu4() {
         initComponents();
-        setTitle("Menu2");
+        setTitle("View Information");
         setSize(890, 462);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -27,7 +27,7 @@ public class Menu4 extends javax.swing.JFrame {
         JPanel panel = new JPanel();
         add(panel);
 
-        JLabel label = new JLabel("Create your team!");
+        JLabel label = new JLabel("View!");
         panel.add(label);
     }
 
@@ -142,7 +142,9 @@ public class Menu4 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-        // TODO add your handling code here:
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BackActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
