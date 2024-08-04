@@ -8,18 +8,17 @@ package com.mycompany.baloncesto;
  *
  * @author hernan
  */
-public class Partido_Liga extends Partido{
-    
-    private String jornada;
+public class Partido_PlayOff {
+    private String ronda;
 
-    public String getJornada() {
-        return jornada;
+    public String getRonda() {
+        return ronda;
     }
 
-    public void setJornada(String jornada) {
-        this.jornada = jornada;
+    public void setRonda(String ronda) {
+        this.ronda = ronda;
     }
 
     
+
 }
-
