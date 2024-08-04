@@ -8,6 +8,25 @@ package com.mycompany.baloncesto;
  *
  * @author hernan
  */
-public class Partido_Liga {
+public class Partido_Liga extends Partido{
+    private int Partido_Id;
+    private String Jornada;
+
+    public int getPartido_Id() {
+        return Partido_Id;
+    }
+
+    public void setPartido_Id(int Partido_Id) {
+        this.Partido_Id = Partido_Id;
+    }
+
+    public String getJornada() {
+        return Jornada;
+    }
+
+    public void setJornada(String Jornada) {
+        this.Jornada = Jornada;
+    }
+    
     
 }
