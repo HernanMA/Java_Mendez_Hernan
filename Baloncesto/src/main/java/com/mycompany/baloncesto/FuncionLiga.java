@@ -35,6 +35,7 @@ public class FuncionLiga {
                     int partidoId = rs.getInt("Partido_Id");
                     String jornada = rs.getString("Jornada");
                     
+                    
                     Partido_Liga partido = new Partido_Liga();
                     partido.setPartido_Id(partidoId);
                     partido.setJornada(jornada);
