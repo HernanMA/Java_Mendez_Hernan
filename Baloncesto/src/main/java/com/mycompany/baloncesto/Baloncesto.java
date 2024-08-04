@@ -4,7 +4,7 @@
 
 package com.mycompany.baloncesto;
 
-import MySQL.Conexion;
+import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,52 +14,36 @@ import javax.swing.JOptionPane;
 public class Baloncesto {
 
     public static void main(String[] args) {
-        Conexion cone = new Conexion();
-        cone.getConexion();
-        
-        CrearEquipo crear = new CrearEquipo();
+        Scanner scanner = new Scanner(System.in);
+        PartidoManager partidoManager = new PartidoManager();
 
         while (true) {
-            String[] opciones = {"Agregar equipo", "Ver Partido PlayOff", "Salir", "Ver Partido Liga", "Crear Partido"};
-            int seleccion = JOptionPane.showOptionDialog(
-                null,                        
-                "Selecciona una opción:",    
-                "Menú Principal",            
-                JOptionPane.DEFAULT_OPTION,  
-                JOptionPane.INFORMATION_MESSAGE, 
-                null,                        
-                opciones,                  
-                opciones[0]             
-            );
+            System.out.println("Seleccione una opción:");
+            System.out.println("1. Añadir un partido PlayOff");
+            System.out.println("2. Añadir un partido Liga");
+            System.out.println("3. Salir");
 
-            
-            switch (seleccion) {
-                case 0: 
-                    String nombre = JOptionPane.showInputDialog("Introduce el nombre del equipo:");
-                    
-                    if (nombre != null && !nombre.trim().isEmpty()) {
-                        crear.insertarEquipo(nombre);
-                        JOptionPane.showMessageDialog(null, "Equipo insertado correctamente.");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Nombre del equipo no válido.");
-                    }
+            int opcion = scanner.nextInt();
+            scanner.nextLine();  // Limpiar el buffer
+
+            switch (opcion) {
+                case 1:
+                    partidoManager.addPartidoPlayOff(scanner);
                     break;
-                case 1: 
-                    JOptionPane.showMessageDialog(null, "Partidos Play Off");
-                    break;
-                case 2: 
-                    JOptionPane.showMessageDialog(null, "Saliendo del programa...");
-                    System.exit(0); 
+                case 2:
+                    partidoManager.addPartidoLiga(scanner);
                     break;
                 case 3:
-                    JOptionPane.showMessageDialog(null, "Partidos Play Ligas");
-                    break;
+                    System.out.println("Saliendo...");
+                    scanner.close();
+                    return;  // Terminar el programa
                 default:
-                    JOptionPane.showMessageDialog(null, "Opción no válida.");
-                    break;
+                    System.out.println("Opción no válida. Inténtelo de nuevo.");
             }
         }
     }
 }
+
+
 
    

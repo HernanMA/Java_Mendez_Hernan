@@ -82,6 +82,17 @@ public class Partido {
         this.tipo = tipo;
     }
     
-    
+    public class PartidoPlayOff extends Partido {
+        private String ronda;
 
+        public String getRonda() {
+            return ronda;
+        }
+
+        public void setRonda(String ronda) {
+            this.ronda = ronda;
+        }
+    
+        
+    }
 }
