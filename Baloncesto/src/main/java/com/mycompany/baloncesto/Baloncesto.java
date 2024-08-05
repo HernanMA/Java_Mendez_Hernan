@@ -21,10 +21,11 @@ public class Baloncesto {
             System.out.println("Seleccione una opción:");
             System.out.println("1. Añadir un partido PlayOff");
             System.out.println("2. Añadir un partido Liga");
-            System.out.println("3. Salir");
+            System.out.println("3. Ver Partidos");
+            System.out.println("4. Salir");
 
             int opcion = scanner.nextInt();
-            scanner.nextLine();  // Limpiar el buffer
+            scanner.nextLine();  
 
             switch (opcion) {
                 case 1:
@@ -34,9 +35,12 @@ public class Baloncesto {
                     partidoManager.addPartidoLiga(scanner);
                     break;
                 case 3:
+                    partidoManager.verPartidos();
+                    break;
+                case 4:
                     System.out.println("Saliendo...");
                     scanner.close();
-                    return;  // Terminar el programa
+                    return;  
                 default:
                     System.out.println("Opción no válida. Inténtelo de nuevo.");
             }

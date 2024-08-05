@@ -6,6 +6,7 @@ package com.mycompany.baloncesto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -124,5 +125,42 @@ public class PartidoManager {
             JOptionPane.showMessageDialog(null, "Error al añadir partido Liga: " + e.getMessage());
         }
     }
+    
+    public void verPartidos() {
+    String sqlPartido = "SELECT p.Id, p.Fecha, p.Equipo_Local_Id, eLocal.Nombre AS Equipo_Local, p.Equipo_Visitante_Id, eVisitante.Nombre AS Equipo_Visitante, p.Cestas_Local, p.Cestas_Visitante, p.Finalizado, p.Tipo " +
+                        "FROM Partido p " +
+                        "LEFT JOIN Equipo eLocal ON p.Equipo_Local_Id = eLocal.Id " +
+                        "LEFT JOIN Equipo eVisitante ON p.Equipo_Visitante_Id = eVisitante.Id";
+    try (Connection conn = getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sqlPartido);
+         ResultSet rs = stmt.executeQuery()) {
+        
+        while (rs.next()) {
+            int id = rs.getInt("Id");
+            String fecha = rs.getString("Fecha");
+            int equipoLocalId = rs.getInt("Equipo_Local_Id");
+            String equipoLocalNombre = rs.getString("Equipo_Local");
+            int equipoVisitanteId = rs.getInt("Equipo_Visitante_Id");
+            String equipoVisitanteNombre = rs.getString("Equipo_Visitante");
+            int cestasLocal = rs.getInt("Cestas_Local");
+            int cestasVisitante = rs.getInt("Cestas_Visitante");
+            boolean finalizado = rs.getBoolean("Finalizado");
+            String tipo = rs.getString("Tipo");
+
+            System.out.println("ID: " + id);
+            System.out.println("Fecha: " + fecha);
+            System.out.println("Equipo Local ID: " + equipoLocalId + " (Nombre: " + equipoLocalNombre + ")");
+            System.out.println("Equipo Visitante ID: " + equipoVisitanteId + " (Nombre: " + equipoVisitanteNombre + ")");
+            System.out.println("Cestas Local: " + cestasLocal);
+            System.out.println("Cestas Visitante: " + cestasVisitante);
+            System.out.println("Finalizado: " + finalizado);
+            System.out.println("Tipo: " + tipo);
+            System.out.println("--------------------------");
+        }
+    } catch (SQLException e) {
+        System.err.println("Error al ver los partidos: " + e.getMessage());
+        JOptionPane.showMessageDialog(null, "Error al ver los partidos: " + e.getMessage());
+    }
+}
 }
 
