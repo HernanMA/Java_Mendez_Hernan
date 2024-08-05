@@ -14,36 +14,35 @@ import javax.swing.JOptionPane;
 public class Baloncesto {
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         PartidoManager partidoManager = new PartidoManager();
-        
         while (true) {
-            String[] opciones = {"Añadir un partido PlayOff", "Añadir un partido Liga", "Ver Partidos", "Salir"};
-            int opcion = JOptionPane.showOptionDialog(
-                null,
-                "Seleccione una opción:",
-                "Menú",
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.INFORMATION_MESSAGE,
-                null,
-                opciones,
-                opciones[0]
-            );
+            System.out.println("Seleccione una opción:");
+            System.out.println("1. Añadir un partido PlayOff");
+            System.out.println("2. Añadir un partido Liga");
+            System.out.println("3. Ver Partidos");
+            System.out.println("4. Salir");
+
+            int opcion = scanner.nextInt();
+            
+            scanner.nextLine();  
 
             switch (opcion) {
-                case 0:
-                    partidoManager.addPartidoPlayOff();
-                    break;
                 case 1:
-                    partidoManager.addPartidoLiga();
+                    partidoManager.addPartidoPlayOff(scanner);
                     break;
                 case 2:
-                    partidoManager.verPartidos();
+                    partidoManager.addPartidoLiga(scanner);
                     break;
                 case 3:
-                    JOptionPane.showMessageDialog(null, "Saliendo...");
-                    return; 
+                    partidoManager.verPartidos();
+                    break;
+                case 4:
+                    System.out.println("Saliendo...");
+                    scanner.close();
+                    return;  
                 default:
-                    JOptionPane.showMessageDialog(null, "Opción no válida. Inténtelo de nuevo.");
+                    System.out.println("Opción no válida. Inténtelo de nuevo.");
             }
         }
     }
