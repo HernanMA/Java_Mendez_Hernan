@@ -14,40 +14,40 @@ import javax.swing.JOptionPane;
 public class Baloncesto {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         PartidoManager partidoManager = new PartidoManager();
-
+        
         while (true) {
-            System.out.println("Seleccione una opción:");
-            System.out.println("1. Añadir un partido PlayOff");
-            System.out.println("2. Añadir un partido Liga");
-            System.out.println("3. Ver Partidos");
-            System.out.println("4. Salir");
-
-            int opcion = scanner.nextInt();
-            scanner.nextLine();  
+            String[] opciones = {"Añadir un partido PlayOff", "Añadir un partido Liga", "Ver Partidos", "Salir"};
+            int opcion = JOptionPane.showOptionDialog(
+                null,
+                "Seleccione una opción:",
+                "Menú",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                opciones,
+                opciones[0]
+            );
 
             switch (opcion) {
+                case 0:
+                    partidoManager.addPartidoPlayOff();
+                    break;
                 case 1:
-                    partidoManager.addPartidoPlayOff(scanner);
+                    partidoManager.addPartidoLiga();
                     break;
                 case 2:
-                    partidoManager.addPartidoLiga(scanner);
-                    break;
-                case 3:
                     partidoManager.verPartidos();
                     break;
-                case 4:
-                    System.out.println("Saliendo...");
-                    scanner.close();
-                    return;  
+                case 3:
+                    JOptionPane.showMessageDialog(null, "Saliendo...");
+                    return; 
                 default:
-                    System.out.println("Opción no válida. Inténtelo de nuevo.");
+                    JOptionPane.showMessageDialog(null, "Opción no válida. Inténtelo de nuevo.");
             }
         }
     }
 }
-
 
 
    
