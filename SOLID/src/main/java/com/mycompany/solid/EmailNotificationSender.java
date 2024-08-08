@@ -19,7 +19,6 @@ public class EmailNotificationSender implements NotificationSender {
 
     @Override
     public void send(String message) {
-        // Aquí usarías `config.getEmailServer()` para configurar el servidor
         System.out.println("Enviando email usando servidor: " + config.getEmailServer());
         System.out.println("Mensaje: " + message);
         logger.logNotification("Email enviado: " + message);
