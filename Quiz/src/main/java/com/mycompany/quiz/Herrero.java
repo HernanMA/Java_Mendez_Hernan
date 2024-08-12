@@ -14,13 +14,13 @@ interface Herrero {
 
 class HerreroElfico implements Herrero {
     public Arma fabricarArma() {
-        return new Espada(); // Creación de arma específica para elfos
+        return new Espada(); 
     }
 }
 
 class HerreroEnano implements Herrero {
     public Arma fabricarArma() {
-        return new Martillo(); // Creación de arma específica para enanos
+        return new Martillo();
     }
 }
 

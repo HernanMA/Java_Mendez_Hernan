@@ -69,10 +69,8 @@ abstract class Arma {
 }
 
 class Espada extends Arma {
-    // Implementación específica de Espada
 }
 
 class Martillo extends Arma {
-    // Implementación específica de Martillo
 }
 

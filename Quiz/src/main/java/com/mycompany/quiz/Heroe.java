@@ -12,7 +12,6 @@ public class Heroe {
     private static Heroe instanciaUnica;
 
     private Heroe() {
-        // Constructor privado para evitar instanciación externa
     }
 
     public static synchronized Heroe obtenerInstancia() {

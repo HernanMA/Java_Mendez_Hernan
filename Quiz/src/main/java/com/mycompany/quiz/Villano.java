@@ -19,8 +19,6 @@ public class Villano {
         contadorVillanos++;
     }
 
-    // Métodos de la clase Villano
-
     protected void finalize() throws Throwable {
         contadorVillanos--;
         super.finalize();
