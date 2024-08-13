@@ -28,7 +28,7 @@ public class CorreccionQuiz {
 
         Encantamiento encantamientoFuego = EncantamientoFactory.obtenerEncantamiento("Fuego");
         Encantamiento encantamientoVorpal = EncantamientoFactory.obtenerEncantamiento("Vorpal");
-
+ 
         Armeria armeriaElfica = new Armeria(new HerreroElfo());
         Arma espadaElfica = armeriaElfica.crearArma("Espada");
         espadaElfica.setEncantamiento(encantamientoFuego);
