@@ -27,7 +27,7 @@ class Carrera {
         atleta4.start();
         
         synchronized (testigo) {
-            testigo.notify(); // Iniciar la carrera con el primer atleta
+            testigo.notify(); 
         }
     }
 
@@ -45,7 +45,7 @@ class Carrera {
             synchronized (testigo) {
                 try {
                     while (numeroAtleta != turno) {
-                        testigo.wait(); // Espera su turno
+                        testigo.wait(); 
                     }
 
                     long tiempoCarrera = (long) (90 + Math.random() * 20);
@@ -55,8 +55,8 @@ class Carrera {
                     long tiempoTranscurrido = System.currentTimeMillis() - startTime;
                     System.out.println(nombre + " ha terminado la carrera en " + tiempoTranscurrido / 1000.0 + " segundos.");
 
-                    turno++; // Incrementa el turno para el siguiente atleta
-                    testigo.notifyAll(); // Notifica a los otros hilos
+                    turno++; 
+                    testigo.notifyAll(); 
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
