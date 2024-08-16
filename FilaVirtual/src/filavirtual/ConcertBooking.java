@@ -9,7 +9,7 @@ package filavirtual;
  * @author hernan
  */
 class Concert {
-    private int ticketsAvailable = 10;  // Número de entradas disponibles
+    private int ticketsAvailable = 10;  
 
     public synchronized boolean sellTicket(String buyer) {
         if (ticketsAvailable > 0) {
@@ -36,10 +36,10 @@ class TicketSeller implements Runnable {
     public void run() {
         while (true) {
             if (!concert.sellTicket(buyerName)) {
-                break;  // Si ya no hay entradas, salir del bucle
+                break;  
             }
             try {
-                Thread.sleep(100);  // Simula el tiempo de procesamiento de la compra
+                Thread.sleep(100);  
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -51,7 +51,6 @@ public class ConcertBooking {
     public static void main(String[] args) {
         Concert concert = new Concert();
 
-        // Creando 15 compradores para simular la sobreventa
         Thread buyer1 = new Thread(new TicketSeller(concert, "Comprador 1"));
         Thread buyer2 = new Thread(new TicketSeller(concert, "Comprador 2"));
         Thread buyer3 = new Thread(new TicketSeller(concert, "Comprador 3"));
