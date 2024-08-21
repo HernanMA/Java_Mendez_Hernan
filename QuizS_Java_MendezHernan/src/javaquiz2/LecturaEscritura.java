@@ -38,19 +38,5 @@ public class LecturaEscritura {
         }
         return tarjetas;
     }
-
-    public void escribirTarjetas(String fileName, List<Tarjeta> tarjetas) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
-            for (Tarjeta tarjeta : tarjetas) {
-                bw.write(tarjeta.getClass().getSimpleName() + "," +
-                        tarjeta.montoApertura + "," +
-                        tarjeta.numeroCuenta + "," +
-                        tarjeta.cuotaDeManejo());
-                bw.newLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
 
