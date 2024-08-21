@@ -16,6 +16,9 @@ public class JavaQuiz2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Hola hola = new Hola();
+        hola.setVisible(true);
+        
         LecturaEscritura lectorEscritor = new LecturaEscritura();
         Cartera cartera = new Cartera("2024");
 
