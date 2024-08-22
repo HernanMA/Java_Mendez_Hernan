@@ -23,7 +23,7 @@ public class Cartera implements PatronCartera {
         this.anho = anho;
         this.tarjetaDAO = new TarjetaDAO();
         this.tarjetas = tarjetaDAO.listarTarjetas();
-    }
+    }   
 
     public void agregarTarjeta(Tarjeta tarjeta) {
         tarjetas.add(tarjeta);

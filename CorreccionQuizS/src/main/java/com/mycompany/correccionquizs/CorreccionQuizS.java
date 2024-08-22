@@ -29,10 +29,10 @@ public class CorreccionQuizS {
             int opcion = -1;
             try {
                 opcion = scanner.nextInt();
-                scanner.nextLine(); // Limpiar el buffer
+                scanner.nextLine(); 
             } catch (InputMismatchException e) {
                 System.out.println("Error: Debe ingresar un número válido.");
-                scanner.nextLine(); // Limpiar el buffer
+                scanner.nextLine();
                 continue;
             }
 
