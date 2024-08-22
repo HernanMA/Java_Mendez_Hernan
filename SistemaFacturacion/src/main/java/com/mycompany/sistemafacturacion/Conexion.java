@@ -19,13 +19,12 @@ import javax.swing.JOptionPane;
 public class Conexion {
 
     private Conexion() {
-
     }
 
     private static Conexion instancia = null;
     Propiedades properties = new Propiedades();
 
-    public void conectar() throws SQLException{
+    public Connection conectar() throws SQLException {  
         Connection conexion = null;
         try {
             Properties propiedades = properties.cargarArchivoProperties();
@@ -44,15 +43,9 @@ public class Conexion {
 
         } catch (IOException | SQLException error) {
             System.out.println(error);
-        } finally {
-            if (conexion != null) {
-                try {
-                    conexion.close();
-                } catch (SQLException e) {
-                    System.out.println("Error al cerrar la conexión: " + e.getMessage());
-                }
-            }
-        }
+        } 
+        
+        return conexion;  
     }
 
     public static Conexion getInstance() {

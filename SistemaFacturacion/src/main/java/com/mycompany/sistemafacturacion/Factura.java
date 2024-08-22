@@ -19,22 +19,26 @@ public class Factura {
     private int id;
     private Cliente cliente;
     private List<Producto> productos;
+    private List<Integer> cantidades;
     private double total;
 
     public Factura(int id, Cliente cliente) {
         this.id = id;
         this.cliente = cliente;
         this.productos = new ArrayList<>();
+        this.cantidades = new ArrayList<>();
         this.total = 0.0;
     }
 
     public void agregarProducto(Producto producto, int cantidad) {
         this.productos.add(producto);
+        this.cantidades.add(cantidad);
         this.total += producto.getPrecio() * cantidad;
     }
 
-    public void aplicarDescuento(CalculadorDescuento calculador) {
-        this.total = calculador.calcular(this.total);
+    public void aplicarDescuento() {
+        double descuento = cliente.getTipoCliente().getDescuento();
+        this.total -= this.total * descuento;
     }
 
     public int getId() {
@@ -49,23 +53,11 @@ public class Factura {
         return productos;
     }
 
+    public List<Integer> getCantidades() {
+        return cantidades;
+    }
+
     public double getTotal() {
         return total;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
     }
 }
