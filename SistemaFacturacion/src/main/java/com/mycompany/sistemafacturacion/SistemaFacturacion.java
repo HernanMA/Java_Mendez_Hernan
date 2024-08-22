@@ -55,14 +55,14 @@ public class SistemaFacturacion {
         try {
             return scanner.nextInt();
         } catch (Exception e) {
-            scanner.nextLine(); // Limpiar el buffer
+            scanner.nextLine(); 
             logger.log(Level.WARNING, "Entrada no válida, intente de nuevo.");
-            return -1; // Retorna una opción inválida para manejar en el switch
+            return -1;
         }
     }
 
     private static void manejarOpcion(int opcion) {
-        scanner.nextLine(); // Limpiar el buffer después de leer la opción
+        scanner.nextLine(); 
         switch (opcion) {
             case 1:
                 agregarCliente();
@@ -121,7 +121,7 @@ public class SistemaFacturacion {
     private static void verClientes() {
     try {
         clienteDAO.verClientes().forEach(cliente -> {
-            System.out.println(cliente);  // Imprime cada cliente en el formato definido en toString()
+            System.out.println(cliente);  
         });
     } catch (Exception e) {
         logger.log(Level.SEVERE, "Error al ver clientes.", e);
@@ -151,7 +151,7 @@ public class SistemaFacturacion {
 
     private static void verProductos() {
         try {
-            productoDAO.verProductos(); // Este método debería imprimir los productos en consola
+            productoDAO.verProductos(); 
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error al ver productos.", e);
             System.out.println("Error al ver productos, intente de nuevo.");
@@ -173,13 +173,13 @@ public class SistemaFacturacion {
         Cliente clienteFactura = clienteOptional.get();
         Factura factura = new Factura(0, clienteFactura);
 
-        char agregarMasProductos = 'n'; // Inicialización de la variable
+        char agregarMasProductos = 'n'; 
         do {
             System.out.print("Ingrese ID del producto: ");
             int productoId = scanner.nextInt();
             System.out.print("Ingrese cantidad: ");
             int cantidad = scanner.nextInt();
-            scanner.nextLine(); // Limpiar el buffer
+            scanner.nextLine(); 
 
             Producto productoFactura = productoDAO.obtenerProductoPorId(productoId);
             if (productoFactura == null) {
@@ -204,7 +204,7 @@ public class SistemaFacturacion {
 
     private static void verFacturas() {
         try {
-            facturaDAO.verFacturas(); // Este método debería imprimir las facturas en consola
+            facturaDAO.verFacturas(); 
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error al ver facturas.", e);
             System.out.println("Error al ver facturas, intente de nuevo.");

@@ -34,7 +34,7 @@ public class Factura {
     }
 
     public void aplicarDescuento() {
-        this.total = cliente.getTipoCliente().calcular(this.total);  // Aplicar el descuento usando el enum
+        this.total = cliente.getTipoCliente().calcular(this.total);  
     }
 
 

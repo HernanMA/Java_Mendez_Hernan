@@ -12,7 +12,7 @@ public enum TipoCliente implements CalculadorDescuento {
     REGULAR(0.0) {
         @Override
         public double calcular(double total) {
-            return total;  // Sin descuento
+            return total;  
         }
     },  
     PREMIUM(0.10) {

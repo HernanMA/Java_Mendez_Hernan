@@ -37,7 +37,6 @@ public class ProductoDAO {
         }
     }
 
-    // Muestra todos los productos en la base de datos
     public void verProductos() {
         String sql = "SELECT * FROM Producto";
 

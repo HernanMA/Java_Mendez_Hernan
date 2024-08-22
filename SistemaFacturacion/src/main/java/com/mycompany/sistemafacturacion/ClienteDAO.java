@@ -24,7 +24,6 @@ public class ClienteDAO {
 
     private static final Logger logger = Logger.getLogger(ClienteDAO.class.getName());
 
-    // Agrega un nuevo cliente a la base de datos
     public void agregarCliente(Cliente cliente) {
         String sql = "INSERT INTO Cliente (Nombre, Apellidos, Email, Telefono, TipoCliente) VALUES (?, ?, ?, ?, ?)";
 
@@ -40,7 +39,6 @@ public class ClienteDAO {
         }
     }
 
-    // Muestra todos los clientes en la base de datos
     public List<Cliente> verClientes() {
         String sql = "SELECT * FROM Cliente";
         List<Cliente> clientes = new ArrayList<>();
@@ -60,7 +58,6 @@ public class ClienteDAO {
         return clientes;
     }
 
-    // Obtiene un cliente por su ID
     public Optional<Cliente> obtenerClientePorId(int id) {
         String sql = "SELECT * FROM Cliente WHERE Id = ?";
 
@@ -81,7 +78,6 @@ public class ClienteDAO {
         return Optional.empty();
     }
 
-    // Métodos auxiliares
 
     private void prepararSentencia(PreparedStatement stmt, Cliente cliente) throws SQLException {
         stmt.setString(1, cliente.getNombre());

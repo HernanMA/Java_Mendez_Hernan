@@ -23,7 +23,6 @@ public class FacturaDAO {
 
     private static final Logger logger = Logger.getLogger(FacturaDAO.class.getName());
 
-    // Crea una nueva factura en la base de datos
     public void crearFactura(Factura factura) {
         factura.aplicarDescuento();
         String sqlFactura = "INSERT INTO Factura (ClienteId, Fecha, Total) VALUES (?, NOW(), ?)";
@@ -41,8 +40,7 @@ public class FacturaDAO {
             manejarTransaccionFallida(e);
         }
     }
-
-    // Muestra todas las facturas en la base de datos
+    
     public void verFacturas() {
         String sql = "SELECT Factura.Id, Cliente.Nombre, Cliente.Apellidos, Factura.Fecha, Factura.Total " +
                      "FROM Factura JOIN Cliente ON Factura.ClienteId = Cliente.Id";
@@ -59,7 +57,6 @@ public class FacturaDAO {
         }
     }
 
-    // Métodos auxiliares
 
     private int insertarFactura(Connection conn, Factura factura, String sqlFactura) throws SQLException {
         try (PreparedStatement stmtFactura = conn.prepareStatement(sqlFactura, Statement.RETURN_GENERATED_KEYS)) {
