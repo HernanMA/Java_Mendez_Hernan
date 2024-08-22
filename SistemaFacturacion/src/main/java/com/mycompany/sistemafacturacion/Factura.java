@@ -12,9 +12,6 @@ package com.mycompany.sistemafacturacion;
 import java.util.List;
 import java.util.ArrayList;
 
-import java.util.List;
-import java.util.ArrayList;
-
 public class Factura {
     private int id;
     private Cliente cliente;
@@ -37,9 +34,9 @@ public class Factura {
     }
 
     public void aplicarDescuento() {
-        double descuento = cliente.getTipoCliente().getDescuento();
-        this.total -= this.total * descuento;
+        this.total = cliente.getTipoCliente().calcular(this.total);  // Aplicar el descuento usando el enum
     }
+
 
     public int getId() {
         return id;

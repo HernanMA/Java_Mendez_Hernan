@@ -18,17 +18,23 @@ import javax.swing.JOptionPane;
  */
 public class Conexion {
 
+    private static Conexion instancia = null;
+    private Propiedades properties = new Propiedades();
+
     private Conexion() {
     }
 
-    private static Conexion instancia = null;
-    Propiedades properties = new Propiedades();
+    public static synchronized Conexion getInstance() {
+        if (instancia == null) {
+            instancia = new Conexion();
+        }
+        return instancia;
+    }
 
     public Connection conectar() throws SQLException {  
         Connection conexion = null;
         try {
             Properties propiedades = properties.cargarArchivoProperties();
-
             String user = propiedades.getProperty("conexion.user");
             String password = propiedades.getProperty("conexion.password");
             String url = propiedades.getProperty("conexion.url");
@@ -36,23 +42,27 @@ public class Conexion {
             conexion = DriverManager.getConnection(url, user, password);
 
             if (conexion != null) {
-                JOptionPane.showMessageDialog(null, "Conexion exitosa");
+                System.out.println("Conexión exitosa");
             } else {
-                JOptionPane.showMessageDialog(null, "Error en la conexion");
+                System.err.println("Error en la conexión");
             }
 
-        } catch (IOException | SQLException error) {
-            System.out.println(error);
+        } catch (IOException error) {
+            System.err.println("Error al cargar el archivo de propiedades: " + error.getMessage());
+            throw new SQLException("No se pudo conectar a la base de datos", error);
         } 
         
         return conexion;  
     }
 
-    public static Conexion getInstance() {
-        if (instancia == null) {
-            instancia = new Conexion();
+    public void cerrarConexion(Connection conexion) {
+        if (conexion != null) {
+            try {
+                conexion.close();
+                System.out.println("Conexión cerrada");
+            } catch (SQLException e) {
+                System.err.println("Error al cerrar la conexión: " + e.getMessage());
+            }
         }
-        return instancia;
     }
 }
-

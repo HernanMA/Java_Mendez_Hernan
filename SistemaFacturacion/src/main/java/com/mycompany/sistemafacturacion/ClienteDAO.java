@@ -9,79 +9,101 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author hernan
  */
+
 public class ClienteDAO {
+
+    private static final Logger logger = Logger.getLogger(ClienteDAO.class.getName());
+
+    // Agrega un nuevo cliente a la base de datos
     public void agregarCliente(Cliente cliente) {
-    String sql = "INSERT INTO Cliente (Nombre, Apellidos, Email, Telefono, TipoCliente) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Cliente (Nombre, Apellidos, Email, Telefono, TipoCliente) VALUES (?, ?, ?, ?, ?)";
 
-    try (Connection conn = Conexion.getInstance().conectar();
-         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = Conexion.getInstance().conectar();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
+            prepararSentencia(stmt, cliente);
+            stmt.executeUpdate();
+            logger.log(Level.INFO, "Cliente agregado exitosamente: {0}", cliente.getNombre());
+
+        } catch (SQLException e) {
+            manejarExcepcion("Error al agregar el cliente", e);
+        }
+    }
+
+    // Muestra todos los clientes en la base de datos
+    public List<Cliente> verClientes() {
+        String sql = "SELECT * FROM Cliente";
+        List<Cliente> clientes = new ArrayList<>();
+
+        try (Connection conn = Conexion.getInstance().conectar();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                clientes.add(crearClienteDesdeResultSet(rs));
+            }
+
+        } catch (SQLException e) {
+            manejarExcepcion("Error al obtener los clientes", e);
+        }
+
+        return clientes;
+    }
+
+    // Obtiene un cliente por su ID
+    public Optional<Cliente> obtenerClientePorId(int id) {
+        String sql = "SELECT * FROM Cliente WHERE Id = ?";
+
+        try (Connection conn = Conexion.getInstance().conectar();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return Optional.of(crearClienteDesdeResultSet(rs));
+                }
+            }
+
+        } catch (SQLException e) {
+            manejarExcepcion("Error al obtener el cliente con ID: " + id, e);
+        }
+
+        return Optional.empty();
+    }
+
+    // Métodos auxiliares
+
+    private void prepararSentencia(PreparedStatement stmt, Cliente cliente) throws SQLException {
         stmt.setString(1, cliente.getNombre());
         stmt.setString(2, cliente.getApellidos());
         stmt.setString(3, cliente.getEmail());
         stmt.setString(4, cliente.getTelefono());
-        stmt.setString(5, cliente.getTipoCliente().name());  
-        stmt.executeUpdate();
-
-        System.out.println("Cliente agregado exitosamente.");
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-}
-    
-    public void verClientes() {
-    String sql = "SELECT * FROM Cliente";
-
-    try (Connection conn = Conexion.getInstance().conectar();
-         Statement stmt = conn.createStatement();
-         ResultSet rs = stmt.executeQuery(sql)) {
-
-        while (rs.next()) {
-            System.out.println("ID: " + rs.getInt("Id"));
-            System.out.println("Nombre: " + rs.getString("Nombre"));
-            System.out.println("Apellidos: " + rs.getString("Apellidos"));
-            System.out.println("Email: " + rs.getString("Email"));
-            System.out.println("Teléfono: " + rs.getString("Telefono"));
-            System.out.println("Tipo Cliente: " + rs.getString("TipoCliente"));
-            System.out.println("------------------------------");
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-}
-    
-    public Cliente obtenerClientePorId(int id) {
-    String sql = "SELECT * FROM Cliente WHERE Id = ?";
-
-    try (Connection conn = Conexion.getInstance().conectar();
-         PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-        stmt.setInt(1, id);
-        ResultSet rs = stmt.executeQuery();
-
-        if (rs.next()) {
-            return new Cliente(
-                rs.getInt("Id"),
-                rs.getString("Nombre"),
-                rs.getString("Apellidos"),
-                rs.getString("Email"),
-                rs.getString("Telefono"),
-                TipoCliente.valueOf(rs.getString("TipoCliente"))  
-            );
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
+        stmt.setString(5, cliente.getTipoCliente().name());
     }
 
-    return null;  
+    private Cliente crearClienteDesdeResultSet(ResultSet rs) throws SQLException {
+        return new Cliente(
+            rs.getInt("Id"),
+            rs.getString("Nombre"),
+            rs.getString("Apellidos"),
+            rs.getString("Email"),
+            rs.getString("Telefono"),
+            TipoCliente.valueOf(rs.getString("TipoCliente"))
+        );
+    }
+
+    private void manejarExcepcion(String mensaje, SQLException e) {
+        logger.log(Level.SEVERE, mensaje, e);
+        throw new RuntimeException(mensaje, e);
+    }
 }
-
-
-
-}
-    

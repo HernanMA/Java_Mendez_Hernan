@@ -26,6 +26,18 @@ public class Cliente {
         this.tipoCliente = tipoCliente;
     }
 
+    @Override
+    public String toString() {
+        return "ID: " + id + "\n" +
+               "Nombre: " + nombre + "\n" +
+               "Apellidos: " + apellidos + "\n" +
+               "Email: " + email + "\n" +
+               "Teléfono: " + telefono + "\n" +
+               "TipoCliente: " + tipoCliente + "\n" +
+               "------------------------------";
+    }
+
+
     public int getId() {
         return id;
     }

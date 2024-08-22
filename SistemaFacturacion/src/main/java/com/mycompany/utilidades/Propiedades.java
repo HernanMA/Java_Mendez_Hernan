@@ -16,11 +16,11 @@ import java.util.Properties;
  */
 public class Propiedades {
     
-    public Properties cargarArchivoProperties() throws FileNotFoundException, IOException{
+    public Properties cargarArchivoProperties() throws IOException {
         Properties propiedades = new Properties();
-        InputStream archivo = new FileInputStream("/Users/hernan/Hernan Mendez/Java_Mendez_Hernan/SistemaFacturacion/src/main/resources/ConexionDB.properties");
-        propiedades.load(archivo);
+        try (InputStream archivo = new FileInputStream("/Users/hernan/Hernan Mendez/Java_Mendez_Hernan/SistemaFacturacion/src/main/resources/ConexionDB.properties")) {
+            propiedades.load(archivo);
+        }
         return propiedades;
     }
-
 }

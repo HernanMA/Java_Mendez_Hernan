@@ -8,10 +8,25 @@ package com.mycompany.sistemafacturacion;
  *
  * @author hernan
  */
-public enum TipoCliente {
-    REGULAR(0.0),  
-    PREMIUM(0.10), 
-    VIP(0.20);  
+public enum TipoCliente implements CalculadorDescuento {
+    REGULAR(0.0) {
+        @Override
+        public double calcular(double total) {
+            return total;  // Sin descuento
+        }
+    },  
+    PREMIUM(0.10) {
+        @Override
+        public double calcular(double total) {
+            return total * (1 - getDescuento());
+        }
+    }, 
+    VIP(0.20) {
+        @Override
+        public double calcular(double total) {
+            return total * (1 - getDescuento());
+        }
+    };  
 
     private final double descuento;
 
@@ -23,3 +38,4 @@ public enum TipoCliente {
         return descuento;
     }
 }
+
