@@ -13,14 +13,14 @@ import java.util.Date;
 import java.util.Date;
 
 public class Visa extends Tarjeta {
-
     public Visa(int id, double montoApertura, Date fechaCreacion) {
         super(id, "Visa", montoApertura, fechaCreacion);
     }
 
     @Override
     public double calcularCuota() {
-        return montoApertura * 0.02;
+        return 50000 - Descuento.DIAMANTE.getValorDescontado(montoApertura);
     }
 }
+
 

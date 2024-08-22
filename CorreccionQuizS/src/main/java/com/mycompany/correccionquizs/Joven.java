@@ -11,16 +11,16 @@ package com.mycompany.correccionquizs;
 import java.util.Date;
 
 public class Joven extends Tarjeta {
-
     public Joven(int id, double montoApertura, Date fechaCreacion) {
         super(id, "Joven", montoApertura, fechaCreacion);
     }
 
     @Override
     public double calcularCuota() {
-        return montoApertura * 0.05;
+        return 50000 - Descuento.BASICO.getValorDescontado(montoApertura);
     }
 }
+
 
 
 

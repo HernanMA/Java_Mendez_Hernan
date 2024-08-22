@@ -27,6 +27,7 @@ public abstract class Tarjeta {
 
     public abstract double calcularCuota();
 
+    
     public String getTipo() {
         return tipo;
     }
@@ -37,6 +38,10 @@ public abstract class Tarjeta {
 
     public Date getFechaCreacion() {
         return fechaCreacion;
+    }
+
+    int getId() {
+        return id;
     }
 }
 

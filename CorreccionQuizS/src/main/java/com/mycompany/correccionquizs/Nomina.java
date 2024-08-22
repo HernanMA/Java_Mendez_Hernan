@@ -13,14 +13,14 @@ import java.util.Date;
 import java.util.Date;
 
 public class Nomina extends Tarjeta {
-
     public Nomina(int id, double montoApertura, Date fechaCreacion) {
         super(id, "Nomina", montoApertura, fechaCreacion);
     }
 
     @Override
     public double calcularCuota() {
-        return montoApertura * 0.03;
+        return 50000 - Descuento.PLATINO.getValorDescontado(montoApertura);
     }
 }
+
 
